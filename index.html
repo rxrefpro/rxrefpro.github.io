@@ -532,12 +532,13 @@ mark{background:rgba(14,165,233,.2);color:var(--teal2);border-radius:2px;padding
   <button class="nav-item active" id="tab-home" onclick="showTab('home')"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></button>
   <button class="nav-item" id="tab-drugs" onclick="showTab('drugs')"><span class="nav-icon">💊</span><span class="nav-label">Drugs</span></button>
   <button class="nav-item" id="tab-antidotes" onclick="showTab('antidotes')"><span class="nav-icon">💉</span><span class="nav-label">Antidotes</span></button>
+  <button class="nav-item" id="tab-moa" onclick="showTab('moa')"><span class="nav-icon">🔬</span><span class="nav-label">MOA</span></button>
   <button class="nav-item" id="tab-flash" onclick="showTab('flash')"><span class="nav-icon">🃏</span><span class="nav-label">Flash</span></button>
   <button class="nav-item" id="tab-quiz" onclick="showTab('quiz')"><span class="nav-icon">🧠</span><span class="nav-label">Quiz</span></button>
-  <button class="nav-item" id="tab-cases" onclick="showTab('cases')"><span class="nav-icon">🏥</span><span class="nav-label">Cases</span></button>
   <button class="nav-item" id="tab-ix" onclick="showTab('ix')"><span class="nav-icon">⚡</span><span class="nav-label">Check</span></button>
   <button class="nav-item" id="tab-abbr" onclick="showTab('abbr')"><span class="nav-icon">📖</span><span class="nav-label">Abbrev</span></button>
-  <button class="nav-item" id="tab-flow" onclick="showTab('flow')"><span class="nav-icon">🔀</span><span class="nav-label">Charts</span></button>
+  <button class="nav-item" id="tab-anatomy" onclick="showTab('anatomy')"><span class="nav-icon">🫀</span><span class="nav-label">A&P</span></button>
+  <button class="nav-item" id="tab-pharmtech" onclick="showTab('pharmtech')"><span class="nav-icon">🎓</span><span class="nav-label">PharmTech</span></button>
   <button class="nav-item" id="tab-saved" onclick="showTab('saved')"><span class="nav-icon">⭐</span><span class="nav-label">Saved</span><span class="bm-dot" id="bmDot"></span></button>
   <button class="nav-item" id="tab-admin" onclick="showTab('admin')"><span class="nav-icon">⚙️</span><span class="nav-label">Admin</span></button>
 </nav>
@@ -811,74 +812,7 @@ const ABBR = [
 // ════════════════════════════════════════════════════════
 // FLOWCHARTS
 // ════════════════════════════════════════════════════════
-const FLOWS = [
-  {id:'htn',name:'HTN Treatment',icon:'🫀',sub:'Step therapy',title:'Hypertension Treatment Algorithm',desc:'Stepwise pharmacological approach to hypertension management. First-line agents vary by comorbidities.',nodes:[
-    {type:'start',title:'Confirmed HTN (BP ≥130/80)',sub:'Confirmed on 2 readings on 2 separate occasions'},
-    {type:'arrow'},
-    {type:'decision',title:'Lifestyle Modifications First',sub:'↓ Na⁺, ↑ exercise, ↓ weight, ↓ alcohol, DASH diet × 3 months'},
-    {type:'arrow',label:'BP not at goal'},
-    {type:'action',title:'Step 1 — Monotherapy',sub:'• Diabetic/CKD: ACEi or ARB preferred\n• HFrEF: ACEi/ARB + BB + MRA\n• Black patients: CCB or thiazide preferred\n• General: ACEi / ARB / CCB / Thiazide'},
-    {type:'arrow',label:'BP still not at goal'},
-    {type:'action',title:'Step 2 — Combination',sub:'Add 2nd agent from different class\nPreferred: ACEi + CCB | ARB + CCB | CCB + Thiazide\nAVOID: ACEi + ARB (dual RAAS)'},
-    {type:'arrow',label:'Resistant HTN (≥3 drugs)'},
-    {type:'result',title:'Add Spironolactone 25mg',sub:'Strongest evidence for resistant HTN\nMonitor K⁺ and renal function closely'},
-  ]},
-  {id:'dm',name:'T2DM Management',icon:'🩸',sub:'Glucose lowering',title:'Type 2 Diabetes — Treatment Algorithm',desc:'Pharmacological approach to T2DM. Metformin remains first-line unless contraindicated.',nodes:[
-    {type:'start',title:'Newly Diagnosed T2DM',sub:'HbA1c ≥6.5% confirmed'},
-    {type:'arrow'},
-    {type:'action',title:'Lifestyle + Metformin',sub:'Diet, exercise, weight loss\nMetformin 500mg BID with meals → titrate\nContraindicated: CrCl <30, IV contrast, hepatic failure'},
-    {type:'arrow',label:'HbA1c not at goal after 3 months'},
-    {type:'decision',title:'CVD, HF, or CKD present?',sub:'These drive drug selection more than HbA1c alone'},
-    {type:'branch',items:[
-      {label:'YES',nodes:[{type:'result',title:'Add SGLT-2i or GLP-1',sub:'SGLT-2i: HFrEF/CKD mortality benefit\nGLP-1: CVD mortality benefit\n(semaglutide, empagliflozin)'}]},
-      {label:'NO',nodes:[{type:'result',title:'Add 2nd Agent by Goal',sub:'Weight: GLP-1 or SGLT-2i\nHypoglycemia: DPP-4i or GLP-1\nCost: Sulfonylurea'}]},
-    ]},
-    {type:'arrow',label:'Still not at goal'},
-    {type:'action',title:'Triple Therapy or Insulin',sub:'Target HbA1c <7% for most\n<8% if elderly/frail\nBasal insulin: glargine 10 units OD bedtime'},
-  ]},
-  {id:'afib',name:'A-fib Anticoagulation',icon:'💔',sub:'Stroke prevention',title:'Atrial Fibrillation — Stroke Prevention',desc:'Anticoagulation decision in non-valvular A-fib based on CHA₂DS₂-VASc stroke risk score.',nodes:[
-    {type:'start',title:'Non-valvular Atrial Fibrillation',sub:'Confirmed on ECG'},
-    {type:'arrow'},
-    {type:'action',title:'Calculate CHA₂DS₂-VASc Score',sub:'C=CHF(1) H=HTN(1) A≥75(2) D=DM(1)\nS=Stroke/TIA(2) V=Vascular(1) A65-74(1) Sc=Female(1)'},
-    {type:'arrow'},
-    {type:'decision',title:'Score?',sub:'Higher score = higher annual stroke risk'},
-    {type:'branch',items:[
-      {label:'0 (M) or 1 (F)',nodes:[{type:'result',title:'No Anticoagulation',sub:'Reassess annually'}]},
-      {label:'≥1 (M) or ≥2 (F)',nodes:[{type:'action',title:'DOAC Preferred over Warfarin',sub:'Apixaban: preferred in CKD\nRivaroxaban: OD convenience\nDabigatran: avoid CrCl <30\nWarfarin: only for mechanical valves'}]},
-    ]},
-  ]},
-  {id:'gout',name:'Gout Management',icon:'🦶',sub:'Acute + chronic',title:'Gout Management Algorithm',desc:'Two-phase: treat acute flare first, then start urate-lowering therapy (ULT).',nodes:[
-    {type:'start',title:'Acute Gout Attack',sub:'Monoarticular arthritis, hyperuricemia, urate crystals'},
-    {type:'arrow'},
-    {type:'action',title:'Treat Acute Flare (within 36h)',sub:'1st line: Colchicine 1.2mg then 0.6mg 1h later\nOR NSAIDs (naproxen, indomethacin)\nOR Prednisone 30–40mg × 5d\nDO NOT start allopurinol during acute flare'},
-    {type:'arrow',label:'After flare resolves (2–4 weeks)'},
-    {type:'decision',title:'Indications for ULT?',sub:'≥2 flares/year, tophi, urate nephropathy'},
-    {type:'branch',items:[
-      {label:'YES — Start ULT',nodes:[{type:'action',title:'Start Allopurinol',sub:'Start 100mg OD → ↑ by 100mg q2–4wk\nTarget uric acid <360 mcmol/L\nCheck HLA-B*5801 in Asians\nColchicine prophylaxis 0.6mg OD × 6 months'}]},
-      {label:'NO',nodes:[{type:'result',title:'Lifestyle',sub:'↓ Purine foods, ↓ alcohol\nLosartan if HTN (uricosuric)'}]},
-    ]},
-  ]},
-  {id:'pain',name:'Pain Ladder',icon:'💊',sub:'WHO 3-step',title:'WHO Analgesic Ladder — Pain Management',desc:'Stepwise approach. Start at the appropriate step based on pain severity (VAS 0–10).',nodes:[
-    {type:'start',title:'Assess Pain Severity',sub:'VAS: Mild 1–3 | Moderate 4–6 | Severe 7–10'},
-    {type:'arrow'},
-    {type:'action',title:'Step 1 — Mild Pain',sub:'Acetaminophen 1g q4–6h (max 4g/day)\n± NSAID (ibuprofen 400–800mg TID)\n± Adjuvants: gabapentin (neuropathic)'},
-    {type:'arrow',label:'Not controlled → Step 2'},
-    {type:'action',title:'Step 2 — Moderate Pain',sub:'Weak opioid: codeine/APAP (Tylenol #3)\nOR Tramadol 50–100mg q4–6h\n+ Continue non-opioids scheduled'},
-    {type:'arrow',label:'Not controlled → Step 3'},
-    {type:'action',title:'Step 3 — Severe Pain',sub:'Strong opioid: morphine 5–10mg PO q4h\nOR hydromorphone 2–4mg PO q4h\n+ Scheduled acetaminophen\n+ Laxative (constipation universal)'},
-    {type:'warning',title:'Opioid Safety',sub:'Monitor: sedation, respiratory rate, constipation\nReversal: Naloxone 0.4mg IV\nTaper gradually when discontinuing'},
-  ]},
-  {id:'abx',name:'Antibiotic Selection',icon:'🦠',sub:'Common infections',title:'Empiric Antibiotic Selection Guide',desc:'Empiric therapy for common outpatient infections. Always consider local resistance patterns.',nodes:[
-    {type:'start',title:'Suspected Bacterial Infection',sub:'Send cultures before starting antibiotics'},
-    {type:'arrow'},
-    {type:'decision',title:'Type of Infection?',sub:''},
-    {type:'branch',items:[
-      {label:'CAP',nodes:[{type:'action',title:'Community-Acquired Pneumonia',sub:'Healthy: Amoxicillin 1g TID × 5d\nComorbidities: Amoxicillin-clavulanate + azithromycin\nOR Levofloxacin monotherapy\nHospitalized: Ceftriaxone + azithromycin IV'}]},
-      {label:'UTI',nodes:[{type:'action',title:'Urinary Tract Infection',sub:'Uncomplicated (women): Nitrofurantoin × 5d\nOR TMP-SMX × 3d\nComplicated: Ciprofloxacin 7d\nPyelonephritis: Ciprofloxacin 14d'}]},
-    ]},
-    {type:'arrow',label:'Always'},
-    {type:'result',title:'Reassess at 48–72h',sub:'Review culture results\nDe-escalate if possible\nShortest effective course'},
-  ]},
+// MOA_DATA, ANATOMY_DATA, PHARMTECH_SECTIONS defined in render section below
 ];
 
 // ════════════════════════════════════════════════════════
@@ -955,7 +889,7 @@ function showTab(tab) {
   const sb = document.getElementById('searchBar');
   sb.classList.toggle('open', tab === 'drugs');
   document.getElementById('scrollArea').scrollTop = 0;
-  const fns = {home:renderHome,drugs:renderDrugs,antidotes:renderAntidotes,flash:renderFlash,quiz:renderQuizMenu,cases:renderCases,ix:renderIx,abbr:renderAbbr,flow:renderFlow,saved:renderSaved,admin:renderAdmin};
+  const fns = {home:renderHome,drugs:renderDrugs,antidotes:renderAntidotes,moa:renderMOA,flash:renderFlash,quiz:renderQuizMenu,ix:renderIx,abbr:renderAbbr,anatomy:renderAnatomy,pharmtech:renderPharmTech,saved:renderSaved,admin:renderAdmin};
   (fns[tab]||renderHome)();
 }
 
@@ -1013,12 +947,12 @@ function renderHome() {
     <div class="quick-grid">
       <button class="quick-btn" onclick="showTab('drugs')"><div class="qb-icon">💊</div><div class="qb-label">Drugs</div></button>
       <button class="quick-btn" onclick="showTab('antidotes')"><div class="qb-icon">💉</div><div class="qb-label">Antidotes</div></button>
+      <button class="quick-btn" onclick="showTab('moa')"><div class="qb-icon">🔬</div><div class="qb-label">MOA</div></button>
       <button class="quick-btn" onclick="showTab('flash')"><div class="qb-icon">🃏</div><div class="qb-label">Flash</div></button>
       <button class="quick-btn" onclick="showTab('quiz')"><div class="qb-icon">🧠</div><div class="qb-label">Quiz</div></button>
-      <button class="quick-btn" onclick="showTab('cases')"><div class="qb-icon">🏥</div><div class="qb-label">Cases</div></button>
       <button class="quick-btn" onclick="showTab('ix')"><div class="qb-icon">⚡</div><div class="qb-label">Check</div></button>
-      <button class="quick-btn" onclick="showTab('abbr')"><div class="qb-icon">📖</div><div class="qb-label">Abbrev</div></button>
-      <button class="quick-btn" onclick="showTab('flow')"><div class="qb-icon">🔀</div><div class="qb-label">Charts</div></button>
+      <button class="quick-btn" onclick="showTab('anatomy')"><div class="qb-icon">🫀</div><div class="qb-label">A&P</div></button>
+      <button class="quick-btn" onclick="showTab('pharmtech')"><div class="qb-icon">🎓</div><div class="qb-label">PharmTech</div></button>
     </div>
     ${bookmarks.length ? `<div class="section-hdr"><h3>Bookmarked</h3><span onclick="showTab('saved')">See all →</span></div><div class="recent-list">${bookmarks.slice(0,4).map(idx=>{const d=getAllDrugs()[idx];if(!d)return'';return`<div class="recent-item" onclick="goToDrug(${idx})"><div><div class="ri-name">${d.brand}</div><div class="ri-gen">${d.generic}</div><div class="ri-class">${d.class}</div></div><span style="color:var(--muted);font-size:.8rem">›</span></div>`;}).join('')}</div>` : ''}
   `;
@@ -1216,37 +1150,6 @@ function escQ(s){return(s||'').replace(/'/g,"\\'").replace(/\n/g,' ');}
 function showDone(){if(qTimer)clearInterval(qTimer);studyData.totalQ+=qQ.length;studyData.totalCorrect+=qC;persist();const pct=Math.round(qC/qQ.length*100);const grade=pct>=90?'🏆':pct>=75?'📚':pct>=55?'💪':'📖';const msg=pct>=90?'Outstanding result!':pct>=75?'Strong — review the ones you missed.':pct>=55?'Good effort — keep studying.':'Review the drug library and try again.';document.getElementById('content').innerHTML=`<div class="quiz-wrap"><div class="quiz-done"><div class="done-ring">${pct}%</div><h2>${grade} ${pct>=90?'Excellent!':pct>=75?'Well done!':'Keep going!'}</h2><p>${qC} of ${qQ.length} correct<br>${msg}</p><div class="done-btns"><button class="done-btn" onclick="startQuiz()">Retry</button><button class="done-btn out" onclick="renderQuizMenu()">← Menu</button></div></div></div>`;}
 
 // ════════════════════════════════════════════════════════
-// CLINICAL CASES
-// ════════════════════════════════════════════════════════
-let caseIdx=0,caseCorrect=0,caseWrong=0,caseAns=false;
-function renderCases(){
-  caseIdx=0;caseCorrect=0;caseWrong=0;caseAns=false;
-  showCase();
-}
-function showCase(){
-  if(caseIdx>=CASES.length){showCaseDone();return;}
-  const c=CASES[caseIdx];const sh=c.opts.map((o,i)=>({t:o,o:i})).sort(()=>Math.random()-.5);const ci=sh.findIndex(s=>s.o===c.c);
-  document.getElementById('content').innerHTML=`<div class="case-wrap">
-    <div class="case-score-bar">
-      <div class="csb-item"><div class="csb-val" style="color:var(--green2)">${caseCorrect}</div><div class="csb-lbl">Correct</div></div>
-      <div class="csb-item"><div class="csb-val">Case ${caseIdx+1}/${CASES.length}</div><div class="csb-lbl">Progress</div></div>
-      <div class="csb-item"><div class="csb-val" style="color:var(--red2)">${caseWrong}</div><div class="csb-lbl">Wrong</div></div>
-    </div>
-    <div class="case-card">
-      <div class="case-badge ${c.cat}">${c.badge}</div>
-      <div class="case-scenario">${c.scenario}</div>
-      <div class="case-question">❓ ${c.question}</div>
-      <div class="case-opts">${sh.map((s,i)=>`<button class="case-opt" id="co${i}" onclick="ansCase(${i},${ci},'${escQ(c.exp)}')">${s.t}</button>`).join('')}</div>
-      <div class="case-explain" id="cexp"></div>
-      <button class="case-next" id="cnext" onclick="nextCase()">${caseIdx<CASES.length-1?'Next Case →':'See Results'}</button>
-    </div>
-  </div>`;
-}
-function ansCase(chosen,correct,exp){if(caseAns)return;caseAns=true;document.querySelectorAll('.case-opt').forEach((b,i)=>{b.disabled=true;if(i===correct)b.classList.add('correct');if(i===chosen&&chosen!==correct)b.classList.add('wrong');});const fb=document.getElementById('cexp');if(chosen===correct){caseCorrect++;fb.className='case-explain show ok';fb.innerHTML=`✓ Correct! — ${exp}`;}else{caseWrong++;fb.className='case-explain show bad';fb.innerHTML=`✗ Incorrect. — ${exp}`;}document.getElementById('cnext').classList.add('show');}
-function nextCase(){caseIdx++;caseAns=false;showCase();}
-function showCaseDone(){const pct=Math.round(caseCorrect/CASES.length*100);document.getElementById('content').innerHTML=`<div class="case-wrap"><div style="text-align:center;padding:20px"><div style="font-family:'Lora',serif;font-size:3rem;margin-bottom:12px">${pct>=80?'🏆':pct>=60?'📚':'💪'}</div><div style="font-family:'Lora',serif;font-size:1.8rem;font-weight:700;margin-bottom:8px">${pct}%</div><p style="font-size:.82rem;color:var(--text2);margin-bottom:20px">${caseCorrect} of ${CASES.length} cases correct</p><div class="done-btns"><button class="done-btn" onclick="renderCases()">Retry Cases</button></div></div></div>`;}
-
-// ════════════════════════════════════════════════════════
 // INTERACTION CHECKER
 // ════════════════════════════════════════════════════════
 function renderIx(){
@@ -1344,30 +1247,219 @@ function renderAbbrList(){
 }
 
 // ════════════════════════════════════════════════════════
-// FLOWCHARTS
+// MOA — Mechanism of Action by Drug Class
 // ════════════════════════════════════════════════════════
-function renderFlow(){
-  document.getElementById('content').innerHTML=`<div class="flow-wrap">
-    <div style="font-family:'Lora',serif;font-size:1.25rem;font-weight:700;margin-bottom:5px">🔀 Clinical Flowcharts</div>
-    <p style="font-size:.75rem;color:var(--text2);margin-bottom:16px;line-height:1.6">Step-by-step treatment algorithms. <strong style="color:var(--yellow2)">For study purposes only</strong> — not clinical guidance.</p>
-    <div class="flow-sel">${FLOWS.map(f=>`<div class="fsb${activeFlow===f.id?' active':''}" onclick="activeFlow='${f.id}';renderFlowDiagram()"><div class="fsb-icon">${f.icon}</div><div class="fsb-name">${f.name}</div><div class="fsb-sub">${f.sub}</div></div>`).join('')}</div>
-    <div id="flowDiagram"></div>
-  </div>`;
-  renderFlowDiagram();
+// ════════════════════════════════════════════════════════
+// MOA DATA
+// ════════════════════════════════════════════════════════
+const MOA_DATA = [
+  {class:"ACE Inhibitors",icon:"🫀",color:"#ef4444",examples:"Ramipril, Lisinopril, Enalapril",mechanism:"Block ACE enzyme → ↓ Ang I→II conversion → ↓ vasoconstriction + ↓ aldosterone + ↑ bradykinin",receptor:"ACE (zinc metalloprotease) in lung endothelium",effect:"Vasodilation, ↓ preload/afterload, ↓ aldosterone, ↑ bradykinin",keyPoints:["Bradykinin ↑ → dry cough (class effect)","Angioedema risk (bradykinin-mediated)","↑ K⁺ (↓ aldosterone)","Preferred in diabetic nephropathy","Teratogenic — stop in pregnancy"]},
+  {class:"ARBs",icon:"🫀",color:"#f97316",examples:"Losartan, Valsartan, Candesartan",mechanism:"Block AT1 receptor → all Ang II effects blocked regardless of source. No ACE inhibition → bradykinin NOT elevated → NO cough",receptor:"Angiotensin II Type 1 (AT1) receptor — Gq/Gi coupled GPCR",effect:"Vasodilation, ↓ aldosterone — same BP effect as ACEi WITHOUT the cough",keyPoints:["NO dry cough","Still cause ↑K⁺ and rare angioedema","Losartan ONLY: also uricosuric","Do NOT combine with ACEi (dual RAAS)","Preferred when patient cannot tolerate ACEi cough"]},
+  {class:"Beta Blockers",icon:"❤️",color:"#8b5cf6",examples:"Metoprolol (β1 selective), Propranolol (non-selective), Carvedilol (β1+β2+α1)",mechanism:"Competitively antagonize catecholamines at β-adrenergic receptors → ↓ HR, ↓ contractility, ↓ renin release",receptor:"β1 (heart, kidney), β2 (lungs, vasculature) — Gs-coupled GPCRs → ↓ cAMP",effect:"↓ HR, ↓ BP, ↓ myocardial O2 demand, antiarrhythmic",keyPoints:["Cardioselective (β1 only): atenolol, metoprolol — safer in asthma","Non-selective (β1+β2): propranolol — can cause bronchospasm","Carvedilol: β1+β2+α1 blockade — best for HFrEF","Abrupt withdrawal → rebound tachycardia/angina","Mask hypoglycemia in diabetics"]},
+  {class:"Calcium Channel Blockers",icon:"💛",color:"#f59e0b",examples:"Amlodipine (DHP), Diltiazem (BTZ), Verapamil (PAA)",mechanism:"Block voltage-gated L-type Ca²⁺ channels → ↓ Ca²⁺ influx → smooth muscle/cardiac relaxation",receptor:"L-type (long-lasting) voltage-gated calcium channel — 3 binding sites (one per subclass)",effect:"Vasodilation (all), ↓ HR + ↓ contractility (non-DHP only)",keyPoints:["DHPs (amlodipine): vascular selective → peripheral edema, NO cardiac effect","Non-DHPs: diltiazem + verapamil → ↓ HR — rate control in A-fib","Verapamil: most cardiac — constipation most common SE","NEVER combine non-DHP CCB + BB → profound bradycardia","Amlodipine: most common first-line antihypertensive CCB"]},
+  {class:"Statins (HMG-CoA Inhibitors)",icon:"🔴",color:"#dc2626",examples:"Atorvastatin, Rosuvastatin, Simvastatin, Pravastatin",mechanism:"Competitively inhibit HMG-CoA reductase → ↓ hepatic cholesterol → ↑ LDL receptor expression → ↑ LDL clearance",receptor:"HMG-CoA reductase enzyme — NADPH-dependent oxidoreductase in liver",effect:"↓ LDL (primary), ↓ TG (mild), ↑ HDL (mild), anti-inflammatory (pleiotropic)",keyPoints:["Rosuvastatin = most potent (↓ LDL 55-65%)","Pravastatin = fewest drug interactions (not CYP metabolized)","Myopathy ↑ with gemfibrozil, clarithromycin, cyclosporine","Monitor CK if muscle pain — rhabdomyolysis rare but serious","Take at night (cholesterol synthesis peaks at night)"]},
+  {class:"SSRIs",icon:"🧠",color:"#6366f1",examples:"Fluoxetine, Sertraline, Escitalopram, Paroxetine",mechanism:"Selectively block SERT (serotonin reuptake transporter) → ↑ synaptic serotonin → enhanced 5-HT neurotransmission",receptor:"SERT (SLC6A4) — sodium-dependent serotonin transporter on presynaptic membrane",effect:"↑ Synaptic 5-HT → antidepressant, anxiolytic, anti-OCD (onset 2-4 weeks)",keyPoints:["Fluoxetine: longest t½ (~4-6d) — least discontinuation syndrome","Paroxetine: worst discontinuation, most anticholinergic","Sertraline: most approved indications","ALL SSRIs: sexual dysfunction, GI upset, initial anxiety","NEVER combine with MAOIs → fatal serotonin syndrome"]},
+  {class:"SNRIs",icon:"🧠",color:"#7c3aed",examples:"Venlafaxine, Duloxetine",mechanism:"Block both SERT AND NET → ↑ both 5-HT and NE in synapse. Venlafaxine: SERT at low dose, NET at ≥150mg. Duloxetine: balanced dual action at all doses",receptor:"SERT + NET (SLC6A2) — presynaptic monoamine transporters",effect:"↑ 5-HT + ↑ NE → antidepressant + analgesic for neuropathic pain",keyPoints:["Venlafaxine: need ≥150mg for full SNRI","Duloxetine: dual from first dose — preferred for pain","Both: ↑ BP (NE effect) — monitor BP","Duloxetine: avoid CrCl <30","Significant discontinuation syndrome — taper slowly"]},
+  {class:"PPIs (Proton Pump Inhibitors)",icon:"🟠",color:"#ea580c",examples:"Omeprazole, Esomeprazole, Pantoprazole",mechanism:"Prodrugs → activated by acid → IRREVERSIBLY bind H⁺/K⁺-ATPase via covalent disulfide bond → block gastric acid secretion",receptor:"H⁺/K⁺-ATPase (proton pump) in gastric parietal cells — final common pathway of acid secretion",effect:"↓ Gastric acid 80-95% — most potent acid suppressants",keyPoints:["IRREVERSIBLE — new pump synthesis needed (24-48h recovery)","Take 30-60min BEFORE meal (pump must be active)","Omeprazole/esomeprazole: most CYP2C19 inhibition → interact with clopidogrel","Pantoprazole: fewest drug interactions","Long-term: ↓Mg²⁺, ↓B12, ↑ C. diff risk, ↑ fracture risk"]},
+  {class:"Warfarin",icon:"🩸",color:"#dc2626",examples:"Warfarin (Coumadin)",mechanism:"Inhibits Vitamin K epoxide reductase (VKOR) → depletes reduced Vit K → ↓ carboxylation of factors II, VII, IX, X + protein C/S",receptor:"VKOR (Vitamin K epoxide reductase complex 1) — enzyme in liver ER",effect:"↓ Clotting factors II, VII, IX, X — delayed onset (must deplete existing factors)",keyPoints:["DELAYED onset 3-5 days (factor VII rises INR first but not fully anticoagulated)","INR target 2-3 (most); 2.5-3.5 (mechanical valves)","Many drug + food (Vit K) interactions via CYP2C9","Reversal: Vitamin K (6-12h) + PCC (immediate)","Teratogenic — avoid in pregnancy"]},
+  {class:"DOACs (Direct Oral Anticoagulants)",icon:"🩸",color:"#b91c1c",examples:"Apixaban, Rivaroxaban (Factor Xa); Dabigatran (Factor IIa)",mechanism:"DIRECT inhibitors — no cofactor needed. Xa inhibitors: bind Factor Xa active site → block prothrombinase complex. Dabigatran: directly blocks thrombin (free and clot-bound)",receptor:"Factor Xa active site (apixaban/rivaroxaban) | Thrombin (IIa) active site (dabigatran)",effect:"Predictable anticoagulation — no routine INR monitoring",keyPoints:["NO routine INR monitoring","Apixaban: lowest GI bleeding — preferred in CKD (dual excretion)","Dabigatran: 80% renally cleared — avoid CrCl <30","Reversal: Andexanet alfa (Xa) | Idarucizumab (dabigatran)","All: major advantage over warfarin = fewer food/drug interactions"]},
+  {class:"Loop Diuretics",icon:"💧",color:"#0891b2",examples:"Furosemide (Lasix), Bumetanide, Torsemide",mechanism:"Inhibit NKCC2 co-transporter in thick ascending limb (TAL) → block reabsorption of Na⁺, K⁺, Cl⁻ → potent natriuresis + diuresis",receptor:"NKCC2 (Na⁺-K⁺-2Cl⁻ co-transporter) on apical membrane of TAL cells",effect:"Most potent diuretics — active even in severe renal impairment (higher doses needed)",keyPoints:["K⁺ wasting → hypokalemia (monitor/replace K⁺)","Ototoxicity with rapid IV infusion or high doses","Metabolic alkalosis (losing H⁺ + Cl⁻ + K⁺)","Effective even with CrCl <30 (unlike thiazides)","Furosemide: most commonly used loop diuretic"]},
+  {class:"SGLT-2 Inhibitors",icon:"🩺",color:"#065f46",examples:"Empagliflozin (Jardiance), Dapagliflozin, Canagliflozin",mechanism:"Inhibit SGLT-2 in proximal tubule → block ~90% of renal glucose reabsorption → glucosuria + osmotic diuresis + natriuresis",receptor:"SGLT-2 (SLC5A2) — high-capacity glucose transporter on S1 segment of proximal tubule",effect:"↓ HbA1c 0.5-1%, weight loss, ↓ BP, HF benefit, renal protection",keyPoints:["Glucosuria → urogenital infections (yeast/bacteria)","Euglycemic DKA — glucose may be NORMAL but DKA present","HFrEF benefit even WITHOUT diabetes (EMPEROR-Reduced, DAPA-HF)","CKD protection independent of glucose (CREDENCE, DAPA-CKD)","Stop before major surgery (DKA risk)"]},
+  {class:"GLP-1 Agonists",icon:"🩺",color:"#047857",examples:"Semaglutide (Ozempic), Liraglutide, Dulaglutide",mechanism:"Bind GLP-1 receptors → ↑ glucose-dependent insulin + ↓ glucagon + ↓ gastric emptying + ↑ central satiety signals",receptor:"GLP-1R — Gs-coupled GPCR on pancreatic β-cells, gut, brain, heart",effect:"↓ HbA1c 1.5-2%, significant weight loss (5-15%), CV mortality benefit",keyPoints:["GLUCOSE-DEPENDENT insulin secretion → minimal hypoglycemia","Weight loss via ↓ gastric emptying + central appetite suppression","CV benefit: semaglutide, liraglutide (landmark trials)","Nausea most common SE — start low, titrate slowly","Pancreatitis risk — avoid in history of pancreatitis"]},
+  {class:"Benzodiazepines",icon:"😴",color:"#7c3aed",examples:"Diazepam, Lorazepam, Midazolam, Alprazolam",mechanism:"Positive allosteric modulators of GABA-A receptor → bind at BZD site → ↑ FREQUENCY of Cl⁻ channel opening (when GABA is present) → hyperpolarization → CNS depression",receptor:"GABA-A receptor (Cl⁻ ionophore) — BZD site between α and γ subunits",effect:"Anxiolytic, sedative, anticonvulsant, muscle relaxant, amnestic",keyPoints:["FREQUENCY of Cl⁻ opening (barbiturates = DURATION — classic exam distinction!)","Require GABA to be present (allosteric modulator, not direct agonist)","Tolerance, dependence — withdrawal can cause seizures","Lorazepam: no active metabolites → safe in liver disease, elderly","Flumazenil reverses BZD (short-acting — re-sedation possible)"]},
+  {class:"Antipsychotics (MOA Overview)",icon:"🧬",color:"#6d28d9",examples:"Haloperidol (1st gen), Risperidone, Quetiapine, Aripiprazole (2nd gen)",mechanism:"1st gen: block D2 receptors → ↓ positive symptoms. 2nd gen: D2 + 5-HT2A blockade → ↓ positive + negative symptoms. Aripiprazole: PARTIAL D2 agonist (dopamine stabilizer)",receptor:"D2 (dopamine receptor, Gi-coupled) across 4 pathways: mesolimbic, mesocortical, nigrostriatal, tuberoinfundibular",effect:"↓ Positive symptoms (all), ↓ negative symptoms (atypicals), sedation (H1), ↓ BP (α1)",keyPoints:["Nigrostriatal D2 block → EPS (dystonia, akathisia, parkinsonism, tardive dyskinesia)","Tuberoinfundibular D2 block → ↑ prolactin → galactorrhea, amenorrhea","Aripiprazole: ONLY partial agonist → NO ↑ prolactin, less EPS","Clozapine: best for refractory schizophrenia but agranulocytosis risk","Metabolic syndrome: weight gain, ↑ glucose, ↑ lipids (quetiapine, olanzapine)"]},
+];
+
+// ════════════════════════════════════════════════════════
+// ANATOMY & PHYSIOLOGY DATA
+// ════════════════════════════════════════════════════════
+const ANATOMY_DATA = [
+  {system:"Cardiovascular System",icon:"❤️",color:"#ef4444",overview:"The heart, blood vessels, and blood. Delivers O2 and nutrients to tissues and removes CO2 and waste. The heart is a 4-chambered muscular pump.",structures:[
+    {name:"Heart & Chambers",desc:"Right side: deoxygenated blood → lungs (pulmonary circulation). Left side: oxygenated blood → body (systemic circulation). SA node = pacemaker (60-100 bpm). AV node delays conduction. Bundle of His → Purkinje fibres."},
+    {name:"Blood Vessels",desc:"Arteries (away from heart, high pressure, thick muscular walls). Veins (to heart, low pressure, valves prevent backflow). Capillaries (single cell layer — gas/nutrient exchange site)."},
+    {name:"Cardiac Output",desc:"CO = Heart Rate × Stroke Volume. Normal CO = 4-8 L/min. Preload (venous return), Afterload (resistance), Contractility (strength). Frank-Starling: ↑ preload → ↑ stretch → ↑ contraction."},
+    {name:"Blood Pressure Regulation",desc:"BP = CO × Peripheral Resistance. Regulated by: RAAS (long-term), ANS (short-term), ADH, ANP. Baroreceptors in aortic arch + carotid sinus provide reflex control."},
+  ],pharmRelevance:"ACEi/ARBs: ↓ angiotensin II → vasodilation + ↓ aldosterone. Beta blockers: ↓ HR and contractility. CCBs: block L-type Ca²⁺ channels → relaxation. Diuretics: ↓ blood volume → ↓ BP. Digoxin: inhibits Na⁺/K⁺-ATPase → ↑ Ca²⁺ → ↑ contractility."},
+  {system:"Respiratory System",icon:"🫁",color:"#0891b2",overview:"Brings O2 into the body and expels CO2. Upper (nose, pharynx, larynx) and lower (trachea, bronchi, lungs, alveoli) respiratory tracts.",structures:[
+    {name:"Alveoli",desc:"~300 million air sacs with 1-cell thick walls. Site of gas exchange. O2 moves into blood (high PO2 alveolus → low PO2 blood). CO2 moves out (high PCO2 blood → low PCO2 alveolus). Type II pneumocytes produce surfactant (↓ surface tension → prevent collapse)."},
+    {name:"Airways & Smooth Muscle",desc:"Bronchi → bronchioles → alveolar ducts → alveoli. Smooth muscle in bronchioles: β2 stimulation → bronchodilation (salbutamol). M3 muscarinic stimulation → bronchoconstriction (blocked by tiotropium). Leukotrienes → bronchoconstriction (blocked by montelukast)."},
+    {name:"Lung Function Tests",desc:"FEV1 = volume exhaled in 1 second. FVC = forced vital capacity. FEV1/FVC <0.7 = obstructive (asthma, COPD). Normal FEV1/FVC with ↓ FVC = restrictive (fibrosis). PEFR = peak expiratory flow rate (asthma monitoring)."},
+    {name:"Respiratory Drive",desc:"Medullary respiratory centre controls rate. Primary stimulus = CO2 (via ↑ H⁺ sensed by central chemoreceptors). In COPD: chronic CO2 retention → oxygen becomes primary drive (hypoxic drive — caution with high-flow O2)."},
+  ],pharmRelevance:"SABAs (salbutamol): β2 agonist → bronchodilation. ICS (fluticasone): ↓ airway inflammation. LAMAs (tiotropium): M3 block → sustained bronchodilation. Montelukast: CysLT1 block → ↓ leukotriene-mediated bronchoconstriction. Theophylline: phosphodiesterase inhibitor → ↑ cAMP → bronchodilation (narrow therapeutic index)."},
+  {system:"Renal System",icon:"🫘",color:"#7c3aed",overview:"Kidneys regulate fluid/electrolyte balance, acid-base balance, BP, and excrete metabolic waste. Each kidney ~1 million nephrons.",structures:[
+    {name:"Nephron Segments",desc:"Glomerulus (filtration at 125mL/min). PCT (reabsorbs 65% Na⁺, all glucose, amino acids — SGLT2 here). Loop of Henle (TAL: NKCC2 — furosemide target). DCT (NCC — thiazide target). Collecting Duct (ADH-regulated water; aldosterone-regulated Na⁺/K⁺ — spironolactone target)."},
+    {name:"GFR & CrCl",desc:"GFR = ~125 mL/min = 180L/day filtered. Cockcroft-Gault: CrCl = [(140-age) × weight] ÷ [72 × SCr] × 0.85 (females). Used to adjust drug doses. CKD stages by eGFR: G1 (≥90), G2 (60-89), G3a (45-59), G3b (30-44), G4 (15-29), G5 (<15 — dialysis)."},
+    {name:"RAAS Axis",desc:"↓ BP or ↓ Na⁺ → Renin (kidney juxtaglomerular cells) → Angiotensin I → ACE (lung) → Angiotensin II → ↑ Aldosterone (adrenal cortex) → ↑ Na⁺/H2O reabsorption + ↑ K⁺ excretion → ↑ BP. ACEi block ACE. ARBs block AT1 receptor. Spironolactone blocks aldosterone."},
+    {name:"Electrolyte Balance",desc:"K⁺ (normal 3.5-5.0 mmol/L): critical for cardiac membrane potential. Hypokalemia → arrhythmia. Hyperkalemia → cardiac arrest. Na⁺ (135-145 mmol/L): primary extracellular cation. Ca²⁺ (2.2-2.6 mmol/L): bone, muscle, nerve. Mg²⁺ (0.75-1.0 mmol/L): ↓ with chronic PPIs."},
+  ],pharmRelevance:"Loop diuretics: NKCC2 inhibition in TAL. Thiazides: NCC inhibition in DCT (ineffective CrCl <30). Spironolactone: aldosterone block in collecting duct. SGLT-2i: block glucose reabsorption in PCT (also in CKD — renal protection). Drug dosing: CrCl determines dose adjustment for most renally-cleared drugs."},
+  {system:"Endocrine System",icon:"🧬",color:"#d97706",overview:"Glands secreting hormones to regulate metabolism, growth, reproduction, and homeostasis. Tightly controlled by feedback loops.",structures:[
+    {name:"Pancreas",desc:"Islets of Langerhans: β-cells → Insulin (↓ glucose, ↑ glycogen synthesis, ↑ lipid synthesis, ↑ K⁺ uptake). α-cells → Glucagon (↑ glucose via glycogenolysis). Insulin secreted when glucose rises → closes KATP channels → Ca²⁺ influx → exocytosis."},
+    {name:"Thyroid Gland",desc:"Produces T3 (active) and T4 (prohormone → converted to T3 peripherally by deiodinase). Requires iodine. Regulated by TSH (pituitary) ← TRH (hypothalamus). T3/T4: ↑ metabolic rate, ↑ HR, ↑ growth, essential for fetal brain development."},
+    {name:"Adrenal Glands",desc:"Cortex: Zona glomerulosa → Aldosterone (RAAS). Zona fasciculata → Cortisol (stress, ↑ glucose, anti-inflammatory). Zona reticularis → Androgens. Medulla: Adrenaline (epinephrine) + Noradrenaline → fight-or-flight (β and α effects)."},
+    {name:"HPA Axis",desc:"Hypothalamus CRH → Pituitary ACTH → Adrenal Cortex Cortisol. Cortisol provides negative feedback. Long-term exogenous corticosteroids → suppress HPA → adrenal atrophy → NEVER stop abruptly (adrenal crisis: weakness, hypotension, electrolyte imbalance)."},
+  ],pharmRelevance:"Metformin/GLP-1/SGLT-2/DPP-4i/Insulin: target glucose regulation. Levothyroxine: replace T4. Methimazole/PTU: block thyroid peroxidase → ↓ T3/T4. Corticosteroids: mimic cortisol (potent anti-inflammatory but suppress HPA and cause metabolic SE). Spironolactone: blocks aldosterone."},
+  {system:"Nervous System",icon:"🧠",color:"#6366f1",overview:"Controls voluntary and involuntary functions. CNS (brain + spinal cord) and PNS (somatic + autonomic). ANS: sympathetic (fight-or-flight via NE/adrenaline) + parasympathetic (rest-digest via ACh).",structures:[
+    {name:"Key Neurotransmitters",desc:"Dopamine (DA): reward, movement (nigrostriatal), motivation. ↓ DA → Parkinson's, schizophrenia. Serotonin (5-HT): mood, appetite, GI motility. ↓ 5-HT → depression. NE: attention, arousal, sympathetic tone. GABA: main inhibitory NT — ↑ GABA → CNS depression. Glutamate: main excitatory NT — ↑ Glu → excitotoxicity."},
+    {name:"Autonomic Nervous System",desc:"Sympathetic: NE/Epi → α1 (vasoconstriction), α2 (presynaptic inhibition), β1 (↑ HR, ↑ contractility), β2 (bronchodilation, vasodilation). Parasympathetic: ACh → M1 (CNS), M2 (↓ HR), M3 (smooth muscle, glands). SLUDGE = Salivation, Lacrimation, Urination, Defecation, GI, Emesis."},
+    {name:"Blood-Brain Barrier",desc:"Tight junctions between brain capillary endothelial cells. Lipophilic drugs cross more easily. P-glycoprotein (P-gp) efflux pump further limits CNS penetration. Ion channels and specific transporters for essential substances. Broken in inflammation (meningitis, trauma)."},
+    {name:"Pain Pathways",desc:"Nociceptors → Aδ (sharp) and C (dull/aching) fibres → dorsal horn → spinothalamic tract → thalamus → cortex. Gate control theory. Descending inhibition (NE + 5-HT pathways from brainstem). Opioids act at μ-receptors in dorsal horn + brainstem + periphery."},
+  ],pharmRelevance:"SSRIs/SNRIs: ↑ monoamine levels in synapse. BZDs: ↑ GABA-A Cl⁻ frequency. Antipsychotics: D2 blockade (+ 5-HT2A in atypicals). Opioids: μ-receptor agonists (↓ pain + ↓ respiratory drive). Anticholinergics: block muscarinic receptors. Donepezil: ↑ ACh by inhibiting AChE. Gabapentin: blocks α2δ subunit → ↓ Ca²⁺ → ↓ neurotransmitter release."},
+];
+
+// ════════════════════════════════════════════════════════
+// PHARMACY TECHNICIAN DATA — Canadian
+// ════════════════════════════════════════════════════════
+const PHARMTECH_SECTIONS = [
+  {id:'calculations',icon:'🔢',title:'Pharmaceutical Calculations',color:'#0ea5e9',desc:'Advanced pharmacy math — dosing, dilutions, concentrations, IV flow rates, and electrolytes.',topics:[
+    {title:'Dose Calculations',content:'Formula: Dose (mg) = Weight (kg) × Dose per kg (mg/kg)\n\nExample: Amoxicillin 25mg/kg/day for 20kg child\n= 25 × 20 = 500mg/day ÷ 3 doses = 167mg TID\n\nDays supply = Total quantity ÷ Daily quantity used\nExample: 120 tabs, 2 tabs BID (4/day) = 30 day supply\n\nCompound rate: if dispensing 7 tabs q7d from 28-tab supply → 4 fills possible'},
+    {title:'Concentration & Dilution',content:'C1V1 = C2V2 (Dilution Formula)\n\nExample: Prepare 250mL of 2% solution from 10% stock:\n10% × V1 = 2% × 250mL → V1 = 50mL stock + 200mL diluent\n\nW/V% = grams per 100mL\nW/W% = grams per 100g\nV/V% = mL per 100mL\n\nParts per million (ppm) = mg/L (used for very dilute solutions)'},
+    {title:'IV Flow Rates',content:'Flow rate (mL/hr) = Volume (mL) ÷ Time (hr)\n\nDrops per minute = (Volume × Drop factor) ÷ Time (minutes)\n\nExample: 1000mL NS over 8hr, 15 gtt/mL drop set:\n= (1000 × 15) ÷ (8 × 60) = 31.25 ≈ 31 gtt/min\n\nInfusion time = Volume ÷ Rate\nExample: 500mL at 50mL/hr = 10 hours\n\nDrug concentration (mcg/mL) = (Drug mg × 1000) ÷ Volume mL'},
+    {title:'Alligation Method',content:'Used to mix two products of different strengths to get a target strength\n\nSteps:\n1. Write higher % and lower % on left\n2. Write desired % in middle\n3. Subtract diagonally (always positive)\n4. Result = parts of each needed\n\nExample: Mix 70% and 30% alcohol to make 50%:\n70 - 50 = 20 parts of 30% solution\n50 - 30 = 20 parts of 70% solution\nEqual parts (1:1 ratio)'},
+    {title:'Renal & Pediatric Dosing',content:'Cockcroft-Gault (CrCl estimation):\nCrCl = [(140-age) × weight(kg)] ÷ [72 × SCr(mg/dL)]\nMultiply by 0.85 for females\n\nExample: 65F, 60kg, SCr 1.2 mg/dL\nCrCl = [(140-65)×60] ÷ [72×1.2] × 0.85 = 44 mL/min (CKD Stage 3a)\n\nPediatric (Clark Rule):\nChild dose = (Weight kg ÷ 70) × Adult dose\n\nYoung Rule (by age):\nChild dose = [Age ÷ (Age + 12)] × Adult dose'},
+  ]},
+  {id:'pharmacology',icon:'💊',title:'Pharmacology',color:'#8b5cf6',desc:'Drug actions, categories, pharmacokinetics, and key therapeutic concepts.',topics:[
+    {title:'Pharmacokinetics (ADME)',content:'Absorption: Drug enters bloodstream. Bioavailability (F) = % reaching systemic circulation. Affected by route, formulation, food, pH, first-pass metabolism.\n\nDistribution: Volume of distribution (Vd) = drug amount ÷ plasma concentration. High Vd = drug goes to tissues. Plasma protein binding (PPB) = only free drug is active.\n\nMetabolism: CYP450 in liver. Phase I: oxidation/reduction/hydrolysis (CYP3A4, CYP2C9, CYP2D6). Phase II: conjugation → water-soluble → excretion.\n\nExcretion: Renal (GF + tubular secretion). t½ = 0.693 × Vd ÷ Clearance. Steady-state reached at ~5 half-lives.'},
+    {title:'Drug Interactions',content:'Pharmacokinetic (ADME) interactions:\n• CYP INHIBITION → ↑ drug level (e.g. fluconazole inhibits CYP2C9 → ↑ warfarin → ↑ INR)\n• CYP INDUCTION → ↓ drug level (e.g. rifampin induces CYP3A4 → ↓ many drugs)\n• P-gp inhibition → ↑ drug absorption/CNS penetration\n\nPharmacodynamic interactions:\n• Synergism: opioid + BZD → additive respiratory depression\n• Antagonism: naloxone reverses opioid effects\n• Same mechanism: two SSRIs = serotonin syndrome risk\n\nKey inhibitors: azole antifungals, macrolides, SSRIs, amiodarone\nKey inducers: rifampin, carbamazepine, St. John Wort, phenytoin'},
+    {title:'Therapeutic Drug Monitoring (TDM)',content:'NTI (Narrow Therapeutic Index) drugs — small margin between efficacy and toxicity:\n• Warfarin: monitor INR (target 2-3)\n• Digoxin: monitor levels + K⁺ (hypokalemia → toxicity)\n• Lithium: monitor levels 0.6-1.2 mEq/L\n• Phenytoin: monitor levels 40-80 mcmol/L; zero-order kinetics!\n• Vancomycin: monitor AUC/MIC ratio\n• Aminoglycosides: monitor peaks + troughs\n\nTechnician role: flag NTI drugs, ensure monitoring parameters documented, check for interactions'},
+    {title:'High-Alert Medications (ISMP)',content:'ISMP High-Alert Drugs — require extra care and independent double-check:\n\nTop examples:\n• Insulin (ALL types): check type, dose, route, expiry\n• Anticoagulants (warfarin, heparin, DOACs): bleeding risk\n• Opioids: respiratory depression risk\n• Concentrated electrolytes (KCl IV, NaCl 3%): dilute before use only\n• Chemotherapy: cytotoxic, specialized PPE required\n• Neuromuscular blocking agents: respiratory arrest if given without sedation\n• Methotrexate: weekly dose often confused with daily\n\nStrategy: Look-Alike Sound-Alike (LASA) labels, independent double-checks, TallMan lettering'},
+  ]},
+  {id:'compounding',icon:'⚗️',title:'Compounding',color:'#10b981',desc:'Sterile and non-sterile compounding — aseptic technique, BUD, and Canadian NAPRA standards.',topics:[
+    {title:'Non-Sterile Compounding',content:'Preparation of customized medications not requiring sterility:\n• Topical: creams, ointments, gels, lotions, pastes\n• Oral: solutions, suspensions, capsules, troches\n• Other: suppositories, lozenges\n\nKey requirements (NAPRA Model Standards):\n• Dedicated compounding area — clean, clutter-free\n• Appropriate PPE: nitrile gloves, mask, lab coat\n• Calibrated equipment: electronic balance (class A or analytical)\n• Master Formula Record: ingredients, quantities, instructions\n• Compounding Record: batch record for each preparation\n• BUD labelled on all preparations\n• Pharmacist final check before dispensing'},
+    {title:'Sterile Compounding & Aseptic Technique',content:'Preparation of injectable, IV, ophthalmic, or intrathecal products:\n\nEnvironment:\n• ISO 5 (Class 100): critical zone (LAF hood/BSC) — where critical sites exposed\n• ISO 7 (Class 10,000): cleanroom (Buffer Zone)\n• ISO 8 (Class 100,000): ante-area (garbing area)\n\nAseptic technique essentials:\n1. Hand hygiene (surgical scrub technique)\n2. Full garbing: shoe covers, legs, hair/beard cover, mask, gown, sterile gloves\n3. 70% IPA swab → allow to DRY (10-15 sec) — wet = contaminated\n4. No-touch technique: NEVER touch needle tip, syringe tip, vial stopper after swabbing\n5. Work in direct compounding area (DCA) — maintain first air\n6. Single-use needles and syringes'},
+    {title:'Beyond-Use Dating (BUD)',content:'BUD = date/time after which preparation should not be used\n(Shorter than manufacturer expiry — reflects compounding conditions)\n\nNon-Sterile BUD (NAPRA/USP 795):\n• Water-containing oral formulations: 14 days refrigerated\n• Water-containing topicals: 30 days\n• Non-aqueous (oils, ointments): 6 months or <25% of ingredient shelf life\n\nSterile BUD (NAPRA/USP 797):\n• Category 1 (no sterility testing): 12h RT or 24h refrigerated\n• Category 2 (with sterility testing): up to 45 days\n\nLabel must include: Preparation date, BUD date/time, Storage conditions, "Beyond Use Date"'},
+    {title:'Compounding Calculations',content:'Trituration (diluting potent powder):\n1:10 triturate = 1 part active + 9 parts diluent\nUsed when quantity needed is too small to weigh accurately on balance\n\nGeometric dilution method:\n• Add equal volume of diluent to active ingredient\n• Mix thoroughly → add more diluent in equal parts\n• Ensures uniform distribution\n\nLevigating:\n• Grind powder with levigating agent (glycerin, mineral oil)\n• Reduces particle size → smoother topical preparation\n\nEmulsification:\n• W/O emulsion: oil continuous phase (e.g. cold cream)\n• O/W emulsion: water continuous phase (e.g. vanishing cream)\n• HLB value determines emulsifier choice'},
+  ]},
+  {id:'practice',icon:'🏪',title:'Community & Institutional Practice',color:'#f59e0b',desc:'Prescription processing, dispensary software, inventory management, and patient safety in Canadian settings.',topics:[
+    {title:'Prescription Processing (Canada)',content:'Steps to process a Canadian prescription:\n1. RECEIVE: written, verbal (pharmacist only), faxed, electronic/ePrescription\n2. VERIFY: patient ID, prescriber info, DIN, drug name, strength, dose, route, frequency, quantity, refills, date\n3. DATA ENTRY: enter into dispensary software (Kroll, PharmaClik, Fillware, Rx30)\n4. DUR: Drug Utilization Review — interactions, allergies, duplications, dosing alerts\n5. FILL: accurate counting/measuring, correct label\n6. PHARMACIST CHECK: final clinical + accuracy verification\n7. COUNSEL: mandatory counselling for new Rx\n\nValid Canadian Rx must include:\nPatient name, prescriber name/license#/signature, drug name, strength, dose, route, frequency, quantity, date, refills allowed'},
+    {title:'Dispensary Software — Kroll & PharmaClik',content:'Key functions used by technicians:\n\nPatient Profile Management:\n• Demographics, allergies (documented with reaction type), current meds\n• Insurance info: provincial plan + private carrier\n• Notes: pregnancy, lactation, special counselling needs\n\nDUR (Drug Utilization Review):\n• Automated alerts: drug-drug, drug-allergy, drug-disease, dose range\n• Technician: flag alerts → pharmacist resolves\n\nAdjudication (billing):\n• Real-time electronic claims to ODB, PharmaCare, Pharmacovigilance\n• Rejection codes: plan limitation, prior authorization needed, DAW override\n• Technical rejections: wrong DIN, expired cardholder, duplicate claim\n\nLabel generation: includes all required provincial labelling elements'},
+    {title:'Inventory Management',content:'FIFO (First In, First Out):\n• Rotate stock — oldest product dispensed first\n• Check expiry on every order receipt\n• Quarantine expired/recalled products immediately\n\nPAR Levels:\n• Minimum quantity before reordering (Periodic Automatic Replenishment)\n• PAR = reorder point; Order to = maximum quantity\n\nControlled Drugs Inventory:\n• Narcotics (CDSA Schedule I): perpetual inventory, monthly counts, biennial return\n• Targeted substances (BZDs): log all dispensing, annual inventory\n• Discrepancies: report to pharmacist → College + Health Canada if unexplained\n\nCold Chain:\n• Insulin, vaccines, biologics: 2-8°C continuously\n• Temperature logs required (manual or electronic monitoring)\n• Excursion SOP: document, assess viability, report if necessary'},
+    {title:'Insurance & Adjudication in Canada',content:'Public Drug Plans by Province:\n• Ontario: ODB (Ontario Drug Benefit) — seniors 65+, social assistance, high-cost drugs\n• BC: PharmaCare — income-tested universal plan (Fair PharmaCare)\n• Quebec: RAMQ — mandatory universal (public or employer plan)\n• Alberta: Alberta Blue Cross — income-tested, seniors 65+\n\nPrivate Insurance:\n• Sun Life, Manulife, Great-West Life, Green Shield, Blue Cross\n• Coordination of Benefits (COB) = province pays first, private second\n\nPrior Authorization (PA):\n• Required for non-formulary drugs or high-cost biologics\n• Pharmacist/prescriber must submit clinical rationale\n• Common examples: biologic DMARDs, some diabetes drugs, specialty medications\n\nDAW codes:\n• DAW 0: generic if available\n• DAW 1: Dispense as Written (brand medically necessary — prescriber certifies)\n• DAW 2: Patient requested brand (patient pays difference)'},
+  ]},
+  {id:'law',icon:'⚖️',title:'Pharmacy Law & Ethics',color:'#ef4444',desc:'Canadian federal and provincial pharmacy legislation, controlled substances, and professional ethics.',topics:[
+    {title:'Federal Drug Legislation',content:'Food and Drugs Act (FDA):\n• Regulates safety, efficacy, quality of all drugs marketed in Canada\n• Health Canada = federal regulator\n• Drug Identification Number (DIN): required for all marketed drugs\n• Natural Product Number (NPN): natural health products\n• Drug Schedules: Rx-only (Schedule I), pharmacist-access (II), OTC with pharmacist access (III), general sale (Unscheduled)\n\nControlled Drugs and Substances Act (CDSA):\n• Schedules I–VIII regulate narcotics, controlled drugs, targeted substances\n• Schedule I: Narcotics (opioids, cocaine) — Rx required, perpetual inventory\n• Schedule III: Amphetamines, barbiturates — Rx required\n• Schedule IV: Benzodiazepines, anabolic steroids — Rx required, some provinces\n• Schedule VI: Precursor chemicals (ephedrine, pseudoephedrine)'},
+    {title:'Provincial Regulation — Ontario',content:'Regulated Health Professions Act (RHPA):\n• Framework for all regulated health professions in Ontario\n• Defines controlled acts (restricted to regulated health professionals)\n\nDrug and Pharmacies Regulation Act (DPRA):\n• Regulates pharmacy practice in Ontario\n\nOntario College of Pharmacists (OCP):\n• Registers and regulates pharmacists AND pharmacy technicians\n• Sets practice standards, investigates complaints\n• Pharmacy technicians regulated in Ontario since 2011\n\nPharmacy Technician Scope (Ontario):\n• Dispensing under pharmacist supervision\n• Accepting verbal orders FROM PRESCRIBERS (not patients)\n• Technician-initiated refills (TIR): authorized in Ontario\n• Cannot perform final check (pharmacist only in most provinces)\n• Cannot provide clinical counselling'},
+    {title:'NAPRA Drug Schedules',content:'NAPRA (National Association of Pharmacy Regulatory Authorities) schedules:\n\nSchedule I — Prescription Required:\n• High safety concern; requires Rx and pharmacist dispensing\n• Examples: antibiotics, opioids, warfarin, SSRIs, insulin (in most provinces)\n\nSchedule II — Pharmacist Consultation Required:\n• Behind the counter; requires pharmacist interaction\n• Examples: emergency contraception, insulin (in some provinces), syringes\n\nSchedule III — Self-Selection (Professional Area):\n• In professional area of pharmacy; no Rx but in pharmacy only\n• Examples: OTC antihistamines, ibuprofen >200mg, some decongestants\n\nUnscheduled — General Sale:\n• Sold anywhere including grocery stores\n• Examples: acetaminophen 325-500mg tabs, vitamins, sunscreen, antacids'},
+    {title:'Controlled Substance Record Keeping',content:'Narcotics (CDSA Schedule I):\n• Perpetual inventory: quantity in and out must balance at all times\n• Every dispensing recorded: patient, prescriber, date, quantity, DIN\n• Biennial inventory count — every 2 years\n• Discrepancies >2% reported to Health Canada\n• Records kept minimum 2 years\n• Loss/theft: police report + Health Canada notification\n\nTargeted Substances (BZDs — Schedule IV):\n• Record of all receipts and dispensing maintained\n• Less stringent than narcotics but still required\n\nDestructions:\n• Patient returns: accept (harm reduction); pharmacist supervises destruction\n• Expired narcotics: licensed destruction, witnessed, documented\n• MedReturn program: community drop-off for safe drug disposal'},
+    {title:'Professional Ethics',content:'Core ethical principles:\n\nAutonomy: Patient has right to make informed decisions. Provide information without coercing. Respect refusal of medication.\n\nBeneficence: Act in patient\'s best interest. Recommend most appropriate therapy. Monitor outcomes.\n\nNon-maleficence: "Do no harm." DUR, interaction checking, error prevention, proper labelling.\n\nJustice: Fair access regardless of background, ability to pay, race, language.\n\nPrivacy (PIPEDA + provincial legislation):\n• Patient health information is confidential\n• Minimum necessary disclosure principle\n• Circle of care: sharing within treatment team is permitted\n• Patient consent required for disclosure outside circle of care\n• Mandatory reporting exceptions: suspected child abuse, public health threat (communicable disease)\n• Pharmacy records: minimum 10 years retention (varies by province)'},
+  ]},
+  {id:'patientcare',icon:'🤝',title:'Patient Care',color:'#ec4899',desc:'Communication, medication adherence, counselling, and medication reconciliation — Canadian pharmacy technician focus.',topics:[
+    {title:'Communication Skills',content:'Professional communication in pharmacy:\n\nOpen-ended questions: "Tell me how you have been taking your medication"\nClosed questions: "Are you allergic to penicillin? Yes or no?"\n\nActive listening:\n• Maintain appropriate eye contact (culturally sensitive)\n• Nod and use affirmations ("I see", "I understand")\n• Don\'t interrupt — let patient finish speaking\n• Reflect back: "So what you are telling me is..."\n\nTeach-back method:\n"Just to make sure I explained it clearly, can you tell me how you will take this?"\n(Identifies comprehension gaps without embarrassing patient)\n\nBarriers to address:\n• Language: use professional interpreters (not family) for health decisions\n• Low health literacy: plain language, visual aids, simplified instructions\n• Hearing impairment: face patient, speak clearly, provide written instructions\n• Cultural differences: non-judgmental, respect health beliefs'},
+    {title:'Medication Adherence',content:'Adherence = % of prescribed doses actually taken correctly\n\nFactors reducing adherence:\n• Complex regimens (polypharmacy — ≥5 meds)\n• Side effects (SSRIs: sexual dysfunction; ACEi: cough)\n• Cost (most common barrier in Canada)\n• Forgetting (most common reported reason)\n• No perceived need ("I feel fine")\n• Cultural beliefs about medication\n\nStrategies to improve adherence:\n• Simplify: OD dosing preferred over BID or TID when possible\n• Compliance packaging: blister packs (PillPak)\n• Medication synchronization: all refills on same day\n• Reminder apps / pill organizers\n• Address cost: generic substitution, ODB special authorization, compassionate access\n• Follow-up calls (pharmacist/tech)\n• Motivational interviewing approach — non-judgmental'},
+    {title:'Patient Counselling Points',content:'Key counselling for common medications:\n\nWarfarin: consistent Vit K (leafy greens) intake, avoid NSAIDs/Aspirin, watch for unusual bleeding/bruising, regular INR monitoring\n\nMetformin: take WITH food to ↓ GI upset, hold before IV contrast or surgery, annual B12 check\n\nLevothyroxine: take on EMPTY STOMACH 30-60min before food, separate from Ca²⁺, iron, antacids by 4h, annual TSH\n\nStatins: report muscle pain immediately (CK check), avoid grapefruit (simvastatin/atorvastatin), take at night (simvastatin)\n\nACEi: dry cough is expected but report swelling (angioedema), avoid NSAIDs, potassium-sparing diet\n\nAntibiotics: complete FULL COURSE even if feeling better, take amoxicillin with food, no alcohol with metronidazole\n\nBZDs: do NOT stop abruptly (seizure risk), avoid alcohol and driving, short-term use only'},
+    {title:'Medication Reconciliation',content:'Medication reconciliation = comparing patient\'s actual medication list with orders/prescriptions to find discrepancies\n\nBPMH (Best Possible Medication History):\n• Collect from patient + pharmacy records + prescriber\n• ALL medications: Rx, OTC, herbals, vitamins, supplements\n• Actual patient usage (not just what is prescribed — ask "how do you actually take it?")\n• Doses, frequencies, and when last taken\n\nProcess at key transitions:\n1. ADMISSION: BPMH vs hospital orders\n2. TRANSFER: sending unit meds vs receiving unit orders\n3. DISCHARGE: hospital meds vs discharge prescription\n\nStatistics (ISMP Canada):\n• 40-70% of patients have ≥1 medication error at transitions of care\n• Most common errors: omission, wrong dose, duplicate therapy\n• Technicians often lead BPMH collection in hospitals'},
+    {title:'Special Populations',content:'Elderly patients (65+):\n• Polypharmacy risk (≥5 medications = high risk for interactions + falls)\n• ↓ Renal + hepatic function → drug accumulation → toxicity\n• Beers Criteria: medications potentially inappropriate in elderly\n• High-risk drug classes: BZDs, anticholinergics, NSAIDs, hypnotics\n• Falls risk: antihypertensives (orthostatic hypotension), sedatives, diuretics\n• Blister packs (compliance packaging) often very helpful\n\nPediatric patients:\n• Weight-based dosing (mg/kg) — DOUBLE CHECK calculations\n• Age-appropriate formulations: liquids preferred <5y, dispersible tabs 5-12y\n• Pediatric doses are NOT just scaled adult doses for all drugs\n• Child-resistant caps required (unless senior-friendly requested by patient)\n• Parent/caregiver education critical — show how to measure liquid doses\n\nPregnant patients:\n• Always check if drug is safe — most drugs have limited pregnancy data\n• SAFE: Acetaminophen (all trimesters), many antibiotics (amoxicillin, cephalexin), insulin\n• AVOID: NSAIDs (3rd trimester → premature closure ductus arteriosus), warfarin, valproate, ACEi/ARBs\n• Breastfeeding: check LactMed (NIH database) or e-Lactancia — pharmacist to advise'},
+  ]},
+];
+
+let moaActive=null;let moaQ='';
+function renderMOA(){
+  document.getElementById('content').innerHTML=`
+    <div style="grid-column:1/-1;font-family:'Lora',serif;font-size:1.25rem;font-weight:700;margin-bottom:5px">🔬 Mechanisms of Action</div>
+    <p style="grid-column:1/-1;font-size:.75rem;color:var(--text2);line-height:1.6;margin-bottom:12px">How drugs work at the molecular level — receptors, enzymes, and cellular targets.</p>
+    <input id="moaSearch" style="grid-column:1/-1;width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:var(--r-sm);font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;color:var(--text);padding:11px 14px;outline:none;margin-bottom:14px;transition:border-color .15s" placeholder="Search drug class or mechanism…" oninput="moaQ=this.value.toLowerCase();renderMOAList()" value="${moaQ}">
+    <div id="moaList" style="grid-column:1/-1"></div>`;
+  renderMOAList();
 }
-function renderFlowDiagram(){
-  const el=document.getElementById('flowDiagram');if(!el)return;
-  const f=FLOWS.find(x=>x.id===activeFlow);if(!f){el.innerHTML='';return;}
-  document.querySelectorAll('.fsb').forEach(b=>b.classList.toggle('active',b.querySelector('.fsb-name').textContent===f.name));
-  el.innerHTML=`<div class="flow-diagram"><div class="flow-title">${f.title}</div><div class="flow-desc">${f.desc}</div><div class="flow-nodes">${renderNodes(f.nodes)}</div></div>`;
+function renderMOAList(){
+  const el=document.getElementById('moaList');if(!el)return;
+  const filtered=MOA_DATA.filter(m=>!moaQ||[m.class,m.mechanism,m.examples,m.receptor,m.effect].some(f=>f.toLowerCase().includes(moaQ)));
+  if(!filtered.length){el.innerHTML=`<div class="empty"><div class="ei">🔍</div><p>No matches.</p></div>`;return;}
+  el.innerHTML=filtered.map((m,i)=>`
+    <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid ${m.color};border-radius:var(--r);margin-bottom:10px;overflow:hidden;animation:slideUp .2s ease both;animation-delay:${Math.min(i,10)*30}ms">
+      <div style="padding:14px 16px;cursor:pointer;user-select:none" onclick="toggleMOA(${i})">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div style="flex:1">
+            <div style="font-family:'Lora',serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:3px">${m.icon} ${hl(m.class,moaQ)}</div>
+            <div style="font-size:.68rem;color:${m.color};font-weight:600;margin-bottom:6px">${hl(m.examples,moaQ)}</div>
+            <div style="font-size:.75rem;color:var(--text2);line-height:1.55;font-style:italic">"${hl(m.effect,moaQ)}"</div>
+          </div>
+          <span style="color:var(--muted);font-size:.65rem;margin-left:10px;flex-shrink:0">${moaActive===i?'▲':'▼'}</span>
+        </div>
+      </div>
+      ${moaActive===i?`<div style="border-top:1px solid var(--border);padding:14px 16px">
+        <div style="margin-bottom:12px"><div style="font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Receptor / Target</div><div style="font-size:.8rem;color:#7dd3fc;line-height:1.55">${hl(m.receptor,moaQ)}</div></div>
+        <div style="margin-bottom:12px"><div style="font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Full Mechanism</div><div style="font-size:.8rem;color:var(--text2);line-height:1.65">${hl(m.mechanism,moaQ)}</div></div>
+        <div><div style="font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px">Key Points</div>${m.keyPoints.map(p=>`<div style="display:flex;gap:8px;margin-bottom:7px;font-size:.78rem;color:var(--text2);line-height:1.5"><span style="color:${m.color};flex-shrink:0;font-weight:700">→</span><span>${hl(p,moaQ)}</span></div>`).join('')}</div>
+      </div>`:''}
+    </div>`).join('');
 }
-function renderNodes(nodes){
-  return nodes.map(n=>{
-    if(n.type==='arrow')return`<div class="farrow"><div class="farrow-line"></div>${n.label?`<div class="farrow-lbl">${n.label}</div><div class="farrow-line"></div>`:''}<div class="farrow-head"></div></div>`;
-    if(n.type==='branch')return`<div class="fbranch">${n.items.map(item=>`<div class="fbranch-item"><div class="fbranch-lbl">${item.label}</div>${renderNodes(item.nodes)}</div>`).join('')}</div>`;
-    return`<div class="fn ${n.type}"><div class="fn-t">${n.title}</div>${n.sub?`<div class="fn-s">${n.sub.replace(/\n/g,'<br>')}</div>`:''}</div>`;
-  }).join('');
+function toggleMOA(i){moaActive=moaActive===i?null:i;renderMOAList();}
+
+// ════════════════════════════════════════════════════════
+// ANATOMY & PHYSIOLOGY
+// ════════════════════════════════════════════════════════
+let anatActive=null;let anatSystem='all';
+function renderAnatomy(){
+  document.getElementById('content').innerHTML=`
+    <div style="grid-column:1/-1;font-family:'Lora',serif;font-size:1.25rem;font-weight:700;margin-bottom:5px">🫀 Anatomy & Physiology</div>
+    <p style="grid-column:1/-1;font-size:.75rem;color:var(--text2);line-height:1.6;margin-bottom:12px">Human body systems and their pharmacological relevance.</p>
+    <div style="grid-column:1/-1;display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px" id="anatCats">
+      ${['all',...ANATOMY_DATA.map(a=>a.system)].map(s=>`<button style="background:${anatSystem===s?'linear-gradient(135deg,var(--teal),var(--purple))':'var(--card)'};border:1.5px solid ${anatSystem===s?'transparent':'var(--border)'};border-radius:20px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:${anatSystem===s?'#fff':'var(--muted)'};padding:5px 13px;cursor:pointer;white-space:nowrap" onclick="anatSystem='${s}';renderAnatomyList()">${s==='all'?'All':s.split(' ')[0]}</button>`).join('')}
+    </div>
+    <div id="anatList" style="grid-column:1/-1"></div>`;
+  renderAnatomyList();
 }
+function renderAnatomyList(){
+  const el=document.getElementById('anatList');if(!el)return;
+  const filtered=ANATOMY_DATA.filter(a=>anatSystem==='all'||a.system===anatSystem);
+  el.innerHTML=filtered.map((a,i)=>`
+    <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid ${a.color};border-radius:var(--r);margin-bottom:12px;overflow:hidden;animation:slideUp .2s ease both;animation-delay:${i*40}ms">
+      <div style="padding:16px;cursor:pointer" onclick="toggleAnat(${i})">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <div style="font-family:'Lora',serif;font-size:1.05rem;font-weight:700">${a.icon} ${a.system}</div>
+          <span style="color:var(--muted);font-size:.65rem">${anatActive===i?'▲':'▼'}</span>
+        </div>
+        <div style="font-size:.75rem;color:var(--text2);line-height:1.55">${a.overview}</div>
+      </div>
+      ${anatActive===i?`<div style="border-top:1px solid var(--border)">
+        ${a.structures.map(s=>`<div style="padding:12px 16px;border-bottom:1px solid var(--border)"><div style="font-size:.78rem;font-weight:700;color:${a.color};margin-bottom:5px">${s.name}</div><div style="font-size:.76rem;color:var(--text2);line-height:1.65">${s.desc}</div></div>`).join('')}
+        <div style="padding:14px 16px;background:rgba(0,0,0,.15)"><div style="font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal2);margin-bottom:7px">💊 Pharmacological Relevance</div><div style="font-size:.76rem;color:var(--text2);line-height:1.65">${a.pharmRelevance}</div></div>
+      </div>`:''}
+    </div>`).join('');
+}
+function toggleAnat(i){anatActive=anatActive===i?null:i;renderAnatomyList();}
+
+// ════════════════════════════════════════════════════════
+// PHARMACY TECHNICIAN TAB
+// ════════════════════════════════════════════════════════
+let ptSection=null;let ptTopic=null;
+function renderPharmTech(){
+  document.getElementById('content').innerHTML=`
+    <div style="grid-column:1/-1;font-family:'Lora',serif;font-size:1.25rem;font-weight:700;margin-bottom:5px">🎓 Pharmacy Technician</div>
+    <p style="grid-column:1/-1;font-size:.75rem;color:var(--text2);line-height:1.6;margin-bottom:16px">Canadian pharmacy technician study guide — all 6 core competency areas.</p>
+    <div id="ptContent" style="grid-column:1/-1"></div>`;
+  document.getElementById('ptContent').innerHTML=renderPTMenu();
+}
+function renderPTMenu(){
+  return PHARMTECH_SECTIONS.map((s,i)=>`
+    <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid ${s.color};border-radius:var(--r);padding:16px;margin-bottom:10px;cursor:pointer;transition:border-color .2s;animation:slideUp .2s ease both;animation-delay:${i*50}ms" onclick="openPTSection(${i})">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:1.4rem">${s.icon}</span>
+          <div><div style="font-family:'Lora',serif;font-size:1rem;font-weight:700;color:var(--text)">${s.title}</div><div style="font-size:.62rem;color:${s.color};font-weight:600;margin-top:2px">${s.topics.length} topics</div></div>
+        </div>
+        <span style="color:var(--muted);font-size:1rem">›</span>
+      </div>
+      <div style="font-size:.75rem;color:var(--text2);line-height:1.55">${s.desc}</div>
+    </div>`).join('');
+}
+function openPTSection(i){
+  ptSection=i;ptTopic=null;
+  const s=PHARMTECH_SECTIONS[i];
+  document.getElementById('ptContent').innerHTML=`
+    <button onclick="document.getElementById('ptContent').innerHTML=renderPTMenu();ptSection=null" style="background:none;border:1px solid var(--border);border-radius:var(--r-sm);font-family:'Plus Jakarta Sans',sans-serif;font-size:.75rem;color:var(--text2);padding:8px 14px;cursor:pointer;margin-bottom:14px">← Back</button>
+    <div style="font-family:'Lora',serif;font-size:1.1rem;font-weight:700;margin-bottom:5px;color:${s.color}">${s.icon} ${s.title}</div>
+    <p style="font-size:.75rem;color:var(--text2);line-height:1.6;margin-bottom:14px">${s.desc}</p>
+    ${s.topics.map((t,j)=>`
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:8px;overflow:hidden">
+        <div style="padding:14px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="togglePTTopic(${j},${i})">
+          <div style="font-size:.88rem;font-weight:700;color:var(--text)">${t.title}</div>
+          <span style="color:var(--muted);font-size:.7rem">${ptTopic===j?'▲':'▼'}</span>
+        </div>
+        ${ptTopic===j?`<div style="border-top:1px solid var(--border);padding:14px 16px"><div style="font-size:.8rem;color:var(--text2);line-height:1.85;white-space:pre-line">${t.content}</div></div>`:''}
+      </div>`).join('')}`;
+}
+function togglePTTopic(j,i){ptTopic=ptTopic===j?null:j;openPTSection(i);}
 
 // ════════════════════════════════════════════════════════
 // ADMIN
