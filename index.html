@@ -1252,36 +1252,278 @@ const MOA_DATA = [
 // ANATOMY & PHYSIOLOGY DATA
 // ════════════════════════════════════════════════════════
 const ANATOMY_DATA = [
-  {system:"Cardiovascular System",icon:"❤️",color:"#ef4444",overview:"The heart, blood vessels, and blood. Delivers O2 and nutrients to tissues and removes CO2 and waste. The heart is a 4-chambered muscular pump.",structures:[
-    {name:"Heart & Chambers",desc:"Right side: deoxygenated blood → lungs (pulmonary circulation). Left side: oxygenated blood → body (systemic circulation). SA node = pacemaker (60-100 bpm). AV node delays conduction. Bundle of His → Purkinje fibres."},
-    {name:"Blood Vessels",desc:"Arteries (away from heart, high pressure, thick muscular walls). Veins (to heart, low pressure, valves prevent backflow). Capillaries (single cell layer — gas/nutrient exchange site)."},
-    {name:"Cardiac Output",desc:"CO = Heart Rate × Stroke Volume. Normal CO = 4-8 L/min. Preload (venous return), Afterload (resistance), Contractility (strength). Frank-Starling: ↑ preload → ↑ stretch → ↑ contraction."},
-    {name:"Blood Pressure Regulation",desc:"BP = CO × Peripheral Resistance. Regulated by: RAAS (long-term), ANS (short-term), ADH, ANP. Baroreceptors in aortic arch + carotid sinus provide reflex control."},
-  ],pharmRelevance:"ACEi/ARBs: ↓ angiotensin II → vasodilation + ↓ aldosterone. Beta blockers: ↓ HR and contractility. CCBs: block L-type Ca²⁺ channels → relaxation. Diuretics: ↓ blood volume → ↓ BP. Digoxin: inhibits Na⁺/K⁺-ATPase → ↑ Ca²⁺ → ↑ contractility."},
-  {system:"Respiratory System",icon:"🫁",color:"#0891b2",overview:"Brings O2 into the body and expels CO2. Upper (nose, pharynx, larynx) and lower (trachea, bronchi, lungs, alveoli) respiratory tracts.",structures:[
-    {name:"Alveoli",desc:"~300 million air sacs with 1-cell thick walls. Site of gas exchange. O2 moves into blood (high PO2 alveolus → low PO2 blood). CO2 moves out (high PCO2 blood → low PCO2 alveolus). Type II pneumocytes produce surfactant (↓ surface tension → prevent collapse)."},
-    {name:"Airways & Smooth Muscle",desc:"Bronchi → bronchioles → alveolar ducts → alveoli. Smooth muscle in bronchioles: β2 stimulation → bronchodilation (salbutamol). M3 muscarinic stimulation → bronchoconstriction (blocked by tiotropium). Leukotrienes → bronchoconstriction (blocked by montelukast)."},
-    {name:"Lung Function Tests",desc:"FEV1 = volume exhaled in 1 second. FVC = forced vital capacity. FEV1/FVC <0.7 = obstructive (asthma, COPD). Normal FEV1/FVC with ↓ FVC = restrictive (fibrosis). PEFR = peak expiratory flow rate (asthma monitoring)."},
-    {name:"Respiratory Drive",desc:"Medullary respiratory centre controls rate. Primary stimulus = CO2 (via ↑ H⁺ sensed by central chemoreceptors). In COPD: chronic CO2 retention → oxygen becomes primary drive (hypoxic drive — caution with high-flow O2)."},
-  ],pharmRelevance:"SABAs (salbutamol): β2 agonist → bronchodilation. ICS (fluticasone): ↓ airway inflammation. LAMAs (tiotropium): M3 block → sustained bronchodilation. Montelukast: CysLT1 block → ↓ leukotriene-mediated bronchoconstriction. Theophylline: phosphodiesterase inhibitor → ↑ cAMP → bronchodilation (narrow therapeutic index)."},
-  {system:"Renal System",icon:"🫘",color:"#7c3aed",overview:"Kidneys regulate fluid/electrolyte balance, acid-base balance, BP, and excrete metabolic waste. Each kidney ~1 million nephrons.",structures:[
-    {name:"Nephron Segments",desc:"Glomerulus (filtration at 125mL/min). PCT (reabsorbs 65% Na⁺, all glucose, amino acids — SGLT2 here). Loop of Henle (TAL: NKCC2 — furosemide target). DCT (NCC — thiazide target). Collecting Duct (ADH-regulated water; aldosterone-regulated Na⁺/K⁺ — spironolactone target)."},
-    {name:"GFR & CrCl",desc:"GFR = ~125 mL/min = 180L/day filtered. Cockcroft-Gault: CrCl = [(140-age) × weight] ÷ [72 × SCr] × 0.85 (females). Used to adjust drug doses. CKD stages by eGFR: G1 (≥90), G2 (60-89), G3a (45-59), G3b (30-44), G4 (15-29), G5 (<15 — dialysis)."},
-    {name:"RAAS Axis",desc:"↓ BP or ↓ Na⁺ → Renin (kidney juxtaglomerular cells) → Angiotensin I → ACE (lung) → Angiotensin II → ↑ Aldosterone (adrenal cortex) → ↑ Na⁺/H2O reabsorption + ↑ K⁺ excretion → ↑ BP. ACEi block ACE. ARBs block AT1 receptor. Spironolactone blocks aldosterone."},
-    {name:"Electrolyte Balance",desc:"K⁺ (normal 3.5-5.0 mmol/L): critical for cardiac membrane potential. Hypokalemia → arrhythmia. Hyperkalemia → cardiac arrest. Na⁺ (135-145 mmol/L): primary extracellular cation. Ca²⁺ (2.2-2.6 mmol/L): bone, muscle, nerve. Mg²⁺ (0.75-1.0 mmol/L): ↓ with chronic PPIs."},
-  ],pharmRelevance:"Loop diuretics: NKCC2 inhibition in TAL. Thiazides: NCC inhibition in DCT (ineffective CrCl <30). Spironolactone: aldosterone block in collecting duct. SGLT-2i: block glucose reabsorption in PCT (also in CKD — renal protection). Drug dosing: CrCl determines dose adjustment for most renally-cleared drugs."},
-  {system:"Endocrine System",icon:"🧬",color:"#d97706",overview:"Glands secreting hormones to regulate metabolism, growth, reproduction, and homeostasis. Tightly controlled by feedback loops.",structures:[
-    {name:"Pancreas",desc:"Islets of Langerhans: β-cells → Insulin (↓ glucose, ↑ glycogen synthesis, ↑ lipid synthesis, ↑ K⁺ uptake). α-cells → Glucagon (↑ glucose via glycogenolysis). Insulin secreted when glucose rises → closes KATP channels → Ca²⁺ influx → exocytosis."},
-    {name:"Thyroid Gland",desc:"Produces T3 (active) and T4 (prohormone → converted to T3 peripherally by deiodinase). Requires iodine. Regulated by TSH (pituitary) ← TRH (hypothalamus). T3/T4: ↑ metabolic rate, ↑ HR, ↑ growth, essential for fetal brain development."},
-    {name:"Adrenal Glands",desc:"Cortex: Zona glomerulosa → Aldosterone (RAAS). Zona fasciculata → Cortisol (stress, ↑ glucose, anti-inflammatory). Zona reticularis → Androgens. Medulla: Adrenaline (epinephrine) + Noradrenaline → fight-or-flight (β and α effects)."},
-    {name:"HPA Axis",desc:"Hypothalamus CRH → Pituitary ACTH → Adrenal Cortex Cortisol. Cortisol provides negative feedback. Long-term exogenous corticosteroids → suppress HPA → adrenal atrophy → NEVER stop abruptly (adrenal crisis: weakness, hypotension, electrolyte imbalance)."},
-  ],pharmRelevance:"Metformin/GLP-1/SGLT-2/DPP-4i/Insulin: target glucose regulation. Levothyroxine: replace T4. Methimazole/PTU: block thyroid peroxidase → ↓ T3/T4. Corticosteroids: mimic cortisol (potent anti-inflammatory but suppress HPA and cause metabolic SE). Spironolactone: blocks aldosterone."},
-  {system:"Nervous System",icon:"🧠",color:"#6366f1",overview:"Controls voluntary and involuntary functions. CNS (brain + spinal cord) and PNS (somatic + autonomic). ANS: sympathetic (fight-or-flight via NE/adrenaline) + parasympathetic (rest-digest via ACh).",structures:[
-    {name:"Key Neurotransmitters",desc:"Dopamine (DA): reward, movement (nigrostriatal), motivation. ↓ DA → Parkinson's, schizophrenia. Serotonin (5-HT): mood, appetite, GI motility. ↓ 5-HT → depression. NE: attention, arousal, sympathetic tone. GABA: main inhibitory NT — ↑ GABA → CNS depression. Glutamate: main excitatory NT — ↑ Glu → excitotoxicity."},
-    {name:"Autonomic Nervous System",desc:"Sympathetic: NE/Epi → α1 (vasoconstriction), α2 (presynaptic inhibition), β1 (↑ HR, ↑ contractility), β2 (bronchodilation, vasodilation). Parasympathetic: ACh → M1 (CNS), M2 (↓ HR), M3 (smooth muscle, glands). SLUDGE = Salivation, Lacrimation, Urination, Defecation, GI, Emesis."},
-    {name:"Blood-Brain Barrier",desc:"Tight junctions between brain capillary endothelial cells. Lipophilic drugs cross more easily. P-glycoprotein (P-gp) efflux pump further limits CNS penetration. Ion channels and specific transporters for essential substances. Broken in inflammation (meningitis, trauma)."},
-    {name:"Pain Pathways",desc:"Nociceptors → Aδ (sharp) and C (dull/aching) fibres → dorsal horn → spinothalamic tract → thalamus → cortex. Gate control theory. Descending inhibition (NE + 5-HT pathways from brainstem). Opioids act at μ-receptors in dorsal horn + brainstem + periphery."},
-  ],pharmRelevance:"SSRIs/SNRIs: ↑ monoamine levels in synapse. BZDs: ↑ GABA-A Cl⁻ frequency. Antipsychotics: D2 blockade (+ 5-HT2A in atypicals). Opioids: μ-receptor agonists (↓ pain + ↓ respiratory drive). Anticholinergics: block muscarinic receptors. Donepezil: ↑ ACh by inhibiting AChE. Gabapentin: blocks α2δ subunit → ↓ Ca²⁺ → ↓ neurotransmitter release."},
+  {system:"Cardiovascular System",icon:"❤️",color:"#ef4444",overview:"The heart, blood vessels, and blood — delivers O₂ and nutrients to tissues, removes CO₂ and waste. The heart is a 4-chambered muscular pump driven by electrical impulses.",content:`
+    <div style="padding:16px">
+      <div style="font-size:.78rem;font-weight:700;color:#f87171;margin-bottom:10px">🫀 Heart Anatomy Diagram</div>
+      <div style="background:var(--navy3);border-radius:12px;padding:16px;margin-bottom:14px;position:relative;overflow:hidden">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+          <div style="background:rgba(14,165,233,.15);border:1px solid rgba(14,165,233,.3);border-radius:8px;padding:10px;text-align:center">
+            <div style="font-size:.65rem;font-weight:700;color:#38bdf8;margin-bottom:4px">RIGHT SIDE</div>
+            <div style="font-size:.72rem;color:#94aec8">Right Atrium → Right Ventricle</div>
+            <div style="font-size:.68rem;color:#38bdf8;margin-top:4px">Pumps to LUNGS (pulmonary)</div>
+            <div style="font-size:.65rem;color:#94aec8;margin-top:2px">Deoxygenated blood</div>
+          </div>
+          <div style="background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:10px;text-align:center">
+            <div style="font-size:.65rem;font-weight:700;color:#f87171;margin-bottom:4px">LEFT SIDE</div>
+            <div style="font-size:.72rem;color:#94aec8">Left Atrium → Left Ventricle</div>
+            <div style="font-size:.68rem;color:#f87171;margin-top:4px">Pumps to BODY (systemic)</div>
+            <div style="font-size:.65rem;color:#94aec8;margin-top:2px">Oxygenated blood</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:6px;font-size:.72rem;color:#94aec8;flex-wrap:wrap">
+          <span style="background:rgba(14,165,233,.2);padding:3px 8px;border-radius:10px;color:#38bdf8">Tricuspid valve</span>
+          <span>→</span>
+          <span style="background:rgba(14,165,233,.2);padding:3px 8px;border-radius:10px;color:#38bdf8">Pulmonary valve</span>
+          <span>→</span>
+          <span style="background:rgba(239,68,68,.2);padding:3px 8px;border-radius:10px;color:#f87171">Mitral valve</span>
+          <span>→</span>
+          <span style="background:rgba(239,68,68,.2);padding:3px 8px;border-radius:10px;color:#f87171">Aortic valve</span>
+        </div>
+      </div>
+      <div style="font-size:.78rem;font-weight:700;color:#f87171;margin-bottom:8px">Electrical Conduction System</div>
+      <div style="background:var(--navy3);border-radius:8px;padding:12px;margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;font-size:.72rem">
+          <div style="background:rgba(245,158,11,.2);border-radius:6px;padding:5px 8px;color:#fbbf24;font-weight:700">SA Node<br><span style="font-size:.6rem;font-weight:400">Pacemaker<br>60–100bpm</span></div>
+          <div style="color:#94aec8;font-size:.8rem">→</div>
+          <div style="background:rgba(14,165,233,.2);border-radius:6px;padding:5px 8px;color:#38bdf8;font-weight:700">AV Node<br><span style="font-size:.6rem;font-weight:400">Delays signal<br>0.12–0.20s</span></div>
+          <div style="color:#94aec8;font-size:.8rem">→</div>
+          <div style="background:rgba(139,92,246,.2);border-radius:6px;padding:5px 8px;color:#a78bfa;font-weight:700">Bundle of His<br><span style="font-size:.6rem;font-weight:400">→ Left & Right<br>bundle branches</span></div>
+          <div style="color:#94aec8;font-size:.8rem">→</div>
+          <div style="background:rgba(16,185,129,.2);border-radius:6px;padding:5px 8px;color:#34d399;font-weight:700">Purkinje Fibres<br><span style="font-size:.6rem;font-weight:400">Ventricular<br>contraction</span></div>
+        </div>
+      </div>
+      <div style="font-size:.78rem;font-weight:700;color:#f87171;margin-bottom:8px">Blood Pressure Physiology</div>
+      <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9;margin-bottom:12px">
+        <strong style="color:#f0f6ff">BP = Cardiac Output × Peripheral Resistance</strong><br>
+        Cardiac Output = Heart Rate × Stroke Volume<br>
+        Normal CO = 4–8 L/min | Normal BP &lt;120/80 mmHg<br><br>
+        Regulated by: RAAS (long-term) | ANS (short-term) | ADH | ANP<br>
+        Baroreceptors in aortic arch + carotid sinus → reflex control
+      </div>
+      <div style="font-size:.78rem;font-weight:700;color:#38bdf8;margin-bottom:8px">💊 Pharmacological Relevance</div>
+      <div style="background:rgba(14,165,233,.05);border:1px solid rgba(14,165,233,.15);border-radius:8px;padding:12px;font-size:.75rem;color:#94aec8;line-height:1.9">
+        <strong style="color:#38bdf8">ACEi/ARBs:</strong> ↓ Ang II → vasodilation + ↓ aldosterone → ↓ BP<br>
+        <strong style="color:#38bdf8">Beta blockers:</strong> ↓ HR + ↓ contractility → ↓ CO → ↓ BP<br>
+        <strong style="color:#38bdf8">CCBs (DHP):</strong> ↓ vascular Ca²⁺ → vasodilation → ↓ afterload<br>
+        <strong style="color:#38bdf8">Loop/thiazide diuretics:</strong> ↓ blood volume → ↓ preload → ↓ CO<br>
+        <strong style="color:#38bdf8">Digoxin:</strong> Inhibits Na⁺/K⁺-ATPase → ↑ intracellular Ca²⁺ → ↑ contractility (positive inotrope)
+      </div>
+    </div>`},
+  {system:"Respiratory System",icon:"🫁",color:"#0891b2",overview:"Brings O₂ into the body and expels CO₂. Upper tract (nose→larynx) and lower tract (trachea→bronchi→alveoli). Smooth muscle tone controls airway diameter.",content:`
+    <div style="padding:16px">
+      <div style="font-size:.78rem;font-weight:700;color:#22d3ee;margin-bottom:10px">🫁 Airway Structure Diagram</div>
+      <div style="background:var(--navy3);border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+          ${['Nose / Mouth','Pharynx','Larynx (voice box)','Trachea','Left & Right Bronchi','Bronchioles','Alveolar Ducts','Alveoli (300 million) — GAS EXCHANGE'].map((level,i) => `
+            <div style="background:${i===7?'rgba(16,185,129,.2)':'rgba(14,165,233,.1)'};border:1px solid ${i===7?'rgba(16,185,129,.4)':'rgba(14,165,233,.2)'};border-radius:6px;padding:5px 14px;font-size:.72rem;color:${i===7?'#34d399':'#38bdf8'};font-weight:${i===7?'700':'400'};text-align:center">${level}</div>
+            ${i<7?'<div style="color:rgba(14,165,233,.4);font-size:.8rem">↓</div>':''}`).join('')}
+        </div>
+      </div>
+      <div style="font-size:.78rem;font-weight:700;color:#22d3ee;margin-bottom:8px">Alveoli — Gas Exchange</div>
+      <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9;margin-bottom:12px">
+        ~300 million alveoli = massive surface area (~70m²)<br>
+        Walls are 1 cell thick (type I pneumocytes) — minimal diffusion distance<br>
+        <strong style="color:#34d399">Type II pneumocytes</strong> produce <strong style="color:#34d399">surfactant</strong> → ↓ surface tension → prevents collapse<br>
+        O₂ moves: high PO₂ alveolus → low PO₂ blood (passive diffusion)<br>
+        CO₂ moves: high PCO₂ blood → low PCO₂ alveolus (passive diffusion)
+      </div>
+      <div style="font-size:.78rem;font-weight:700;color:#22d3ee;margin-bottom:8px">Lung Function Tests</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+        ${[
+          {test:'FEV₁',desc:'Volume exhaled in 1 second — airflow limitation'},
+          {test:'FVC',desc:'Forced vital capacity — total air expelled'},
+          {test:'FEV₁/FVC <0.7',desc:'OBSTRUCTIVE pattern (asthma, COPD)'},
+          {test:'FEV₁/FVC normal + ↓FVC',desc:'RESTRICTIVE pattern (fibrosis, obesity)'},
+        ].map(t => `<div style="background:rgba(14,165,233,.08);border-radius:8px;padding:9px"><div style="font-size:.72rem;font-weight:700;color:#38bdf8;margin-bottom:3px">${t.test}</div><div style="font-size:.7rem;color:#94aec8">${t.desc}</div></div>`).join('')}
+      </div>
+      <div style="font-size:.78rem;font-weight:700;color:#38bdf8;margin-bottom:8px">💊 Pharmacological Relevance</div>
+      <div style="background:rgba(14,165,233,.05);border:1px solid rgba(14,165,233,.15);border-radius:8px;padding:12px;font-size:.75rem;color:#94aec8;line-height:1.9">
+        <strong style="color:#38bdf8">SABAs (salbutamol):</strong> β2 agonist → bronchodilation in 5–15 min (rescue)<br>
+        <strong style="color:#38bdf8">ICS (fluticasone):</strong> ↓ airway inflammation → maintenance<br>
+        <strong style="color:#38bdf8">LAMAs (tiotropium):</strong> Block M3 → sustained bronchodilation (~24h)<br>
+        <strong style="color:#38bdf8">Montelukast:</strong> CysLT1 block → ↓ leukotriene bronchoconstriction<br>
+        <strong style="color:#f87171">Non-selective BBs (propranolol):</strong> Block β2 → BRONCHOSPASM risk in asthma/COPD — AVOID
+      </div>
+    </div>`},
+  {system:"Renal System",icon:"🫘",color:"#7c3aed",overview:"Kidneys regulate fluid/electrolyte balance, acid-base balance, blood pressure, and excrete metabolic waste. Each kidney contains ~1 million nephrons — the functional units.",content:`
+    <div style="padding:16px">
+      <div style="font-size:.78rem;font-weight:700;color:#a78bfa;margin-bottom:10px">🫘 Nephron Diagram — Drug Targets</div>
+      <div style="background:var(--navy3);border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          ${[
+            {seg:'GLOMERULUS',fn:'Filtration — 125 mL/min (180L/day)',drug:'GFR used to calculate drug dose adjustments (CrCl)',color:'#f87171'},
+            {seg:'PROXIMAL CONVOLUTED TUBULE (PCT)',fn:'Reabsorbs 65% Na⁺, ALL glucose, amino acids',drug:'SGLT-2 inhibitors block glucose reabsorption here',color:'#fbbf24'},
+            {seg:'LOOP OF HENLE — Thick Ascending Limb',fn:'NKCC2 transporter reabsorbs Na⁺, K⁺, Cl⁻',drug:'FUROSEMIDE (loop diuretics) inhibit NKCC2 here',color:'#38bdf8'},
+            {seg:'DISTAL CONVOLUTED TUBULE (DCT)',fn:'NCC transporter fine-tunes Na⁺/K⁺',drug:'THIAZIDES inhibit NCC here (ineffective CrCl <30)',color:'#34d399'},
+            {seg:'COLLECTING DUCT',fn:'ADH-regulated water reabsorption; aldosterone-regulated Na⁺/K⁺',drug:'SPIRONOLACTONE blocks aldosterone receptors here',color:'#a78bfa'},
+          ].map(s => `
+            <div style="background:rgba(0,0,0,.2);border-left:3px solid ${s.color};border-radius:0 8px 8px 0;padding:10px">
+              <div style="font-size:.65rem;font-weight:700;color:${s.color};margin-bottom:3px">${s.seg}</div>
+              <div style="font-size:.72rem;color:#f0f6ff;margin-bottom:2px">${s.fn}</div>
+              <div style="font-size:.7rem;color:#94aec8">💊 ${s.drug}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+      <div style="font-size:.78rem;font-weight:700;color:#a78bfa;margin-bottom:8px">RAAS Axis</div>
+      <div style="background:var(--navy3);border-radius:8px;padding:12px;margin-bottom:12px">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:.72rem">
+          <div style="background:rgba(239,68,68,.2);padding:5px 8px;border-radius:6px;color:#f87171;font-weight:700">↓ BP / ↓ Na⁺</div>
+          <span style="color:#94aec8">→</span>
+          <div style="background:rgba(245,158,11,.2);padding:5px 8px;border-radius:6px;color:#fbbf24;font-weight:700">Renin (kidney)</div>
+          <span style="color:#94aec8">→</span>
+          <div style="background:rgba(14,165,233,.2);padding:5px 8px;border-radius:6px;color:#38bdf8">Ang I → ACE (lung) → Ang II</div>
+          <span style="color:#94aec8">→</span>
+          <div style="background:rgba(139,92,246,.2);padding:5px 8px;border-radius:6px;color:#a78bfa;font-weight:700">Aldosterone</div>
+          <span style="color:#94aec8">→</span>
+          <div style="background:rgba(16,185,129,.2);padding:5px 8px;border-radius:6px;color:#34d399">↑ Na⁺/H₂O reabsorption → ↑ BP</div>
+        </div>
+        <div style="margin-top:10px;font-size:.72rem;color:#94aec8">
+          <span style="color:#38bdf8">ACEi</span> block ACE | <span style="color:#38bdf8">ARBs</span> block AT1 receptor | <span style="color:#a78bfa">Spironolactone</span> blocks aldosterone
+        </div>
+      </div>
+      <div style="font-size:.78rem;font-weight:700;color:#a78bfa;margin-bottom:8px">Electrolyte Reference Ranges</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        ${[
+          {el:'K⁺ Potassium',range:'3.5–5.0 mmol/L',note:'Critical cardiac electrolyte. ↓ → arrhythmia. ↑ → cardiac arrest'},
+          {el:'Na⁺ Sodium',range:'135–145 mmol/L',note:'Primary extracellular cation. Controls fluid balance'},
+          {el:'Ca²⁺ Calcium',range:'2.2–2.6 mmol/L',note:'Bone, muscle contraction, nerve conduction'},
+          {el:'Mg²⁺ Magnesium',range:'0.75–1.0 mmol/L',note:'↓ with chronic PPI use. Required for K⁺ regulation'},
+        ].map(e => `
+          <div style="background:var(--navy3);border-radius:8px;padding:9px">
+            <div style="font-size:.75rem;font-weight:700;color:#a78bfa;margin-bottom:2px">${e.el}</div>
+            <div style="font-size:.72rem;color:#34d399;margin-bottom:3px">Normal: ${e.range}</div>
+            <div style="font-size:.68rem;color:#94aec8">${e.note}</div>
+          </div>`).join('')}
+      </div>
+    </div>`},
+  {system:"Endocrine System",icon:"🧬",color:"#d97706",overview:"Glands secreting hormones to regulate metabolism, growth, reproduction, and homeostasis. Works via feedback loops — most important: HPA axis (stress), HPT axis (thyroid), pancreas (glucose).",content:`
+    <div style="padding:16px">
+      <div style="font-size:.78rem;font-weight:700;color:#fbbf24;margin-bottom:10px">🧬 Endocrine Glands Overview</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+        ${[
+          {gland:'Pituitary (Master Gland)',hormones:'ACTH, TSH, GH, FSH, LH, ADH, Oxytocin',color:'#fbbf24'},
+          {gland:'Thyroid Gland',hormones:'T3 (active), T4 (→T3 peripherally)',color:'#38bdf8'},
+          {gland:'Adrenal Cortex',hormones:'Cortisol (stress), Aldosterone (BP), Androgens',color:'#f87171'},
+          {gland:'Adrenal Medulla',hormones:'Adrenaline, Noradrenaline (fight-or-flight)',color:'#fb923c'},
+          {gland:'Pancreas — β-cells',hormones:'Insulin → ↓ glucose, ↑ glycogen',color:'#34d399'},
+          {gland:'Pancreas — α-cells',hormones:'Glucagon → ↑ glucose via glycogenolysis',color:'#a78bfa'},
+        ].map(g => `
+          <div style="background:var(--navy3);border-top:2px solid ${g.color};border-radius:0 0 8px 8px;padding:9px">
+            <div style="font-size:.72rem;font-weight:700;color:${g.color};margin-bottom:3px">${g.gland}</div>
+            <div style="font-size:.68rem;color:#94aec8">${g.hormones}</div>
+          </div>`).join('')}
+      </div>
+      <div style="font-size:.78rem;font-weight:700;color:#fbbf24;margin-bottom:8px">Insulin Secretion Mechanism</div>
+      <div style="background:var(--navy3);border-radius:8px;padding:12px;margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;font-size:.7rem">
+          <div style="background:rgba(245,158,11,.2);padding:4px 8px;border-radius:6px;color:#fbbf24">↑ Blood glucose</div>
+          <span style="color:#94aec8">→</span>
+          <div style="background:rgba(14,165,233,.2);padding:4px 8px;border-radius:6px;color:#38bdf8">Glucose enters β-cell (GLUT2)</div>
+          <span style="color:#94aec8">→</span>
+          <div style="background:rgba(139,92,246,.2);padding:4px 8px;border-radius:6px;color:#a78bfa">ATP↑ → KATP channel closes</div>
+          <span style="color:#94aec8">→</span>
+          <div style="background:rgba(239,68,68,.2);padding:4px 8px;border-radius:6px;color:#f87171">Membrane depolarizes → Ca²⁺ influx</div>
+          <span style="color:#94aec8">→</span>
+          <div style="background:rgba(16,185,129,.2);padding:4px 8px;border-radius:6px;color:#34d399">Insulin exocytosis</div>
+        </div>
+      </div>
+      <div style="font-size:.78rem;font-weight:700;color:#fbbf24;margin-bottom:8px">HPA Axis — Corticosteroids</div>
+      <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9;margin-bottom:12px">
+        Hypothalamus (CRH) → Pituitary (ACTH) → Adrenal Cortex → Cortisol<br>
+        Cortisol provides negative feedback to hypothalamus + pituitary<br>
+        <strong style="color:#f87171">Long-term exogenous steroids:</strong> suppress HPA → adrenal atrophy<br>
+        <strong style="color:#f87171">Never stop abruptly</strong> → adrenal crisis (↓ BP, weakness, electrolyte imbalance)
+      </div>
+      <div style="font-size:.78rem;font-weight:700;color:#38bdf8;margin-bottom:8px">💊 Pharmacological Relevance</div>
+      <div style="background:rgba(14,165,233,.05);border:1px solid rgba(14,165,233,.15);border-radius:8px;padding:12px;font-size:.75rem;color:#94aec8;line-height:1.9">
+        <strong style="color:#38bdf8">Metformin:</strong> Activates AMPK → ↓ hepatic gluconeogenesis (no hypoglycemia)<br>
+        <strong style="color:#38bdf8">GLP-1 agonists:</strong> ↑ glucose-dependent insulin + ↓ glucagon<br>
+        <strong style="color:#38bdf8">SGLT-2i:</strong> Block glucose reabsorption in PCT → glucosuria<br>
+        <strong style="color:#38bdf8">Levothyroxine:</strong> Replace T4 → peripheral conversion to active T3<br>
+        <strong style="color:#38bdf8">Methimazole:</strong> Block thyroid peroxidase → ↓ T3/T4 synthesis<br>
+        <strong style="color:#f87171">Corticosteroids:</strong> ↑ blood glucose, suppress HPA, immunosuppression
+      </div>
+    </div>`},
+  {system:"Nervous System",icon:"🧠",color:"#6366f1",overview:"Controls voluntary and involuntary functions. CNS (brain + spinal cord) + PNS (somatic + autonomic). The ANS is split into sympathetic (fight-or-flight via NE) and parasympathetic (rest-digest via ACh).",content:`
+    <div style="padding:16px">
+      <div style="font-size:.78rem;font-weight:700;color:#818cf8;margin-bottom:10px">⚡ Autonomic Nervous System</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+        <div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:12px">
+          <div style="font-size:.72rem;font-weight:700;color:#f87171;margin-bottom:8px">SYMPATHETIC<br>Fight-or-Flight</div>
+          <div style="font-size:.7rem;color:#94aec8;line-height:1.8">
+            NT: <strong style="color:#f87171">Noradrenaline / Adrenaline</strong><br>
+            α1: vasoconstriction, ↑ BP<br>
+            α2: presynaptic inhibition<br>
+            β1: ↑ HR, ↑ contractility (heart)<br>
+            β2: bronchodilation, vasodilation
+          </div>
+        </div>
+        <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:12px">
+          <div style="font-size:.72rem;font-weight:700;color:#34d399;margin-bottom:8px">PARASYMPATHETIC<br>Rest-Digest</div>
+          <div style="font-size:.7rem;color:#94aec8;line-height:1.8">
+            NT: <strong style="color:#34d399">Acetylcholine (ACh)</strong><br>
+            M2: ↓ HR (heart)<br>
+            M3: ↓ bronchi (bronchoconstriction), ↑ GI motility, ↑ secretions, miosis
+          </div>
+        </div>
+      </div>
+      <div style="font-size:.78rem;font-weight:700;color:#818cf8;margin-bottom:8px">Key Neurotransmitters & Drug Targets</div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px">
+        ${[
+          {nt:'Dopamine (DA)',pathway:'Mesolimbic (reward), nigrostriatal (movement), tuberoinfundibular (prolactin)',drugs:'Antipsychotics block D2 → ↓ positive symptoms BUT also EPS + ↑ prolactin',color:'#fbbf24'},
+          {nt:'Serotonin (5-HT)',pathway:'Raphe nuclei → limbic, cortex, GI tract',drugs:'SSRIs/SNRIs ↑ synaptic 5-HT | Ondansetron blocks 5-HT3 (antiemetic)',color:'#34d399'},
+          {nt:'GABA',pathway:'Most inhibitory interneurons throughout CNS',drugs:'BZDs ↑ GABA-A Cl⁻ FREQUENCY | Barbiturates ↑ DURATION | Propofol/alcohol also enhance',color:'#a78bfa'},
+          {nt:'Norepinephrine (NE)',pathway:'Locus coeruleus → cortex, limbic, spinal cord',drugs:'SNRIs ↑ NE | Beta blockers block β | Alpha blockers block α',color:'#38bdf8'},
+        ].map(n => `
+          <div style="background:var(--navy3);border-left:3px solid ${n.color};border-radius:0 8px 8px 0;padding:10px">
+            <div style="font-size:.75rem;font-weight:700;color:${n.color};margin-bottom:2px">${n.nt}</div>
+            <div style="font-size:.7rem;color:#f0f6ff;margin-bottom:2px">${n.pathway}</div>
+            <div style="font-size:.7rem;color:#94aec8">💊 ${n.drugs}</div>
+          </div>`).join('')}
+      </div>
+      <div style="font-size:.78rem;font-weight:700;color:#818cf8;margin-bottom:8px">SLUDGE — Parasympathetic Excess (Organophosphate toxicity)</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        ${['S — Salivation','L — Lacrimation','U — Urination','D — Defecation','G — GI upset','E — Emesis'].map(s =>
+          `<div style="background:rgba(99,102,241,.15);border-radius:20px;padding:4px 10px;font-size:.72rem;color:#818cf8">${s}</div>`
+        ).join('')}
+      </div>
+    </div>`},
+  {system:"Gastrointestinal System",icon:"🍽️",color:"#059669",overview:"Digests food, absorbs nutrients, eliminates waste. Also the primary site of oral drug absorption. The gut wall, liver first-pass metabolism, and gut flora significantly affect drug bioavailability.",content:`
+    <div style="padding:16px">
+      <div style="font-size:.78rem;font-weight:700;color:#34d399;margin-bottom:10px">🍽️ GI Tract — Drug Absorption Sites</div>
+      <div style="background:var(--navy3);border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="display:flex;flex-direction:column;gap:4px;align-items:center">
+          ${[
+            {seg:'Mouth',fn:'Sublingual absorption (SL) — rapid onset. Nitroglycerin SL 2–5 min.',color:'#fbbf24'},
+            {seg:'Stomach (pH 1.5–3.5)',fn:'Acid breaks down drugs. Parietal cells → HCl via H⁺/K⁺-ATPase. PPIs act here.',color:'#f87171'},
+            {seg:'Duodenum',fn:'Iron, Ca²⁺, fat-soluble vitamins (A,D,E,K). First segment of small intestine.',color:'#fb923c'},
+            {seg:'Jejunum',fn:'Bulk absorption — most oral drugs absorbed here. Largest villi.',color:'#fbbf24'},
+            {seg:'Ileum',fn:'B12-intrinsic factor complex, bile salts recycled.',color:'#34d399'},
+            {seg:'Large Intestine',fn:'Water reabsorption. Gut flora (affects Vit K, affects antibiotic-related C. diff).',color:'#38bdf8'},
+          ].map((s,i) => `
+            <div style="background:${i===0||i===1?'rgba(239,68,68,.1)':i===5?'rgba(14,165,233,.1)':'rgba(16,185,129,.1)'};border:1px solid ${s.color}44;border-radius:6px;padding:7px 12px;width:100%;text-align:left">
+              <span style="font-size:.72rem;font-weight:700;color:${s.color}">${s.seg}</span>
+              <span style="font-size:.7rem;color:#94aec8"> — ${s.fn}</span>
+            </div>
+            ${i<5?'<div style="color:#94aec8;font-size:.75rem">↓</div>':''}`).join('')}
+        </div>
+      </div>
+      <div style="font-size:.78rem;font-weight:700;color:#34d399;margin-bottom:8px">First-Pass Metabolism</div>
+      <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9;margin-bottom:12px">
+        Oral drugs → absorbed from gut → portal vein → LIVER (first pass) → then systemic circulation<br>
+        <strong style="color:#fbbf24">High first-pass drugs:</strong> Much lower oral bioavailability vs IV<br>
+        Examples: Morphine (F=25%), Propranolol (F=25%), Glyceryl trinitrate (SL only — bypasses liver)<br>
+        <strong style="color:#38bdf8">Pro-drugs avoid this:</strong> Codeine → morphine (CYP2D6) | Clopidogrel → active form (CYP2C19)
+      </div>
+      <div style="font-size:.78rem;font-weight:700;color:#38bdf8;margin-bottom:8px">💊 Key GI Pharmacology</div>
+      <div style="background:rgba(14,165,233,.05);border:1px solid rgba(14,165,233,.15);border-radius:8px;padding:12px;font-size:.75rem;color:#94aec8;line-height:1.9">
+        <strong style="color:#38bdf8">PPIs:</strong> Irreversibly inhibit H⁺/K⁺-ATPase in parietal cells → ↓ gastric acid 80–95%<br>
+        <strong style="color:#38bdf8">Metoclopramide:</strong> D2 antagonist + 5-HT4 agonist → ↑ GI motility (prokinetic)<br>
+        <strong style="color:#38bdf8">Ondansetron:</strong> 5-HT3 antagonist → blocks vagal afferents → ↓ nausea/vomiting<br>
+        <strong style="color:#38bdf8">Loperamide:</strong> Peripheral μ-opioid agonist → ↓ GI motility → anti-diarrheal<br>
+        <strong style="color:#f87171">Opioids:</strong> ↓ GI motility → constipation (universal SE — always prescribe laxative concurrently)
+      </div>
+    </div>`},
 ];
 
 // ════════════════════════════════════════════════════════
@@ -1289,43 +1531,733 @@ const ANATOMY_DATA = [
 // ════════════════════════════════════════════════════════
 const PHARMTECH_SECTIONS = [
   {id:'calculations',icon:'🔢',title:'Pharmaceutical Calculations',color:'#0ea5e9',desc:'Advanced pharmacy math — dosing, dilutions, concentrations, IV flow rates, and electrolytes.',topics:[
-    {title:'Dose Calculations',content:'Formula: Dose (mg) = Weight (kg) × Dose per kg (mg/kg)\n\nExample: Amoxicillin 25mg/kg/day for 20kg child\n= 25 × 20 = 500mg/day ÷ 3 doses = 167mg TID\n\nDays supply = Total quantity ÷ Daily quantity used\nExample: 120 tabs, 2 tabs BID (4/day) = 30 day supply\n\nCompound rate: if dispensing 7 tabs q7d from 28-tab supply → 4 fills possible'},
-    {title:'Concentration & Dilution',content:'C1V1 = C2V2 (Dilution Formula)\n\nExample: Prepare 250mL of 2% solution from 10% stock:\n10% × V1 = 2% × 250mL → V1 = 50mL stock + 200mL diluent\n\nW/V% = grams per 100mL\nW/W% = grams per 100g\nV/V% = mL per 100mL\n\nParts per million (ppm) = mg/L (used for very dilute solutions)'},
-    {title:'IV Flow Rates',content:'Flow rate (mL/hr) = Volume (mL) ÷ Time (hr)\n\nDrops per minute = (Volume × Drop factor) ÷ Time (minutes)\n\nExample: 1000mL NS over 8hr, 15 gtt/mL drop set:\n= (1000 × 15) ÷ (8 × 60) = 31.25 ≈ 31 gtt/min\n\nInfusion time = Volume ÷ Rate\nExample: 500mL at 50mL/hr = 10 hours\n\nDrug concentration (mcg/mL) = (Drug mg × 1000) ÷ Volume mL'},
-    {title:'Alligation Method',content:'Used to mix two products of different strengths to get a target strength\n\nSteps:\n1. Write higher % and lower % on left\n2. Write desired % in middle\n3. Subtract diagonally (always positive)\n4. Result = parts of each needed\n\nExample: Mix 70% and 30% alcohol to make 50%:\n70 - 50 = 20 parts of 30% solution\n50 - 30 = 20 parts of 70% solution\nEqual parts (1:1 ratio)'},
-    {title:'Renal & Pediatric Dosing',content:'Cockcroft-Gault (CrCl estimation):\nCrCl = [(140-age) × weight(kg)] ÷ [72 × SCr(mg/dL)]\nMultiply by 0.85 for females\n\nExample: 65F, 60kg, SCr 1.2 mg/dL\nCrCl = [(140-65)×60] ÷ [72×1.2] × 0.85 = 44 mL/min (CKD Stage 3a)\n\nPediatric (Clark Rule):\nChild dose = (Weight kg ÷ 70) × Adult dose\n\nYoung Rule (by age):\nChild dose = [Age ÷ (Age + 12)] × Adult dose'},
+    {title:'Dose Calculations',content:`
+      <div style="padding:16px">
+        <div style="background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.2);border-radius:10px;padding:14px;margin-bottom:14px">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#38bdf8;margin-bottom:8px">📐 Core Formula</div>
+          <div style="font-size:.95rem;font-weight:700;color:#f0f6ff;text-align:center;padding:8px 0">Dose (mg) = Weight (kg) × Dose (mg/kg)</div>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#38bdf8;margin-bottom:8px">Worked Example 1 — Pediatric Antibiotic</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.8;margin-bottom:14px">
+          Amoxicillin 25 mg/kg/day TID for a 20 kg child<br>
+          Step 1: Total daily dose = 25 × 20 = <strong style="color:#f0f6ff">500 mg/day</strong><br>
+          Step 2: Per dose = 500 ÷ 3 = <strong style="color:#f0f6ff">167 mg per dose</strong><br>
+          Step 3: Days supply (if 100mL suspension, 125mg/5mL)<br>
+          &nbsp;&nbsp;&nbsp;→ Volume per dose = (167÷125)×5 = 6.7mL<br>
+          &nbsp;&nbsp;&nbsp;→ Daily = 6.7 × 3 = 20mL/day<br>
+          &nbsp;&nbsp;&nbsp;→ Days supply = 100mL ÷ 20mL = <strong style="color:#34d399">5 days</strong>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#38bdf8;margin-bottom:8px">Worked Example 2 — Days Supply</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.8;margin-bottom:14px">
+          Dispensed: 120 tablets | Sig: 2 tabs BID<br>
+          Daily qty = 2 × 2 = 4 tabs/day<br>
+          Days supply = 120 ÷ 4 = <strong style="color:#34d399">30 days</strong>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#38bdf8;margin-bottom:8px">Worked Example 3 — Compound Rate</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.8">
+          Rx: 28 tabs, 1 tab q7d (weekly dose)<br>
+          Daily qty = 1 ÷ 7 = 0.143 tabs/day<br>
+          Days supply = 28 ÷ 0.143 = <strong style="color:#34d399">196 days (28 weeks)</strong>
+        </div>
+      </div>`},
+    {title:'Concentration & Dilution (C1V1=C2V2)',content:`
+      <div style="padding:16px">
+        <div style="background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.2);border-radius:10px;padding:14px;margin-bottom:14px">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#38bdf8;margin-bottom:8px">📐 Dilution Formula</div>
+          <div style="font-size:.95rem;font-weight:700;color:#f0f6ff;text-align:center;padding:8px 0">C₁V₁ = C₂V₂</div>
+          <div style="font-size:.72rem;color:#94aec8;text-align:center">C=Concentration, V=Volume</div>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#38bdf8;margin-bottom:8px">Example 1 — Prepare dilute solution</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.8;margin-bottom:14px">
+          Prepare 250mL of 2% solution from 10% stock:<br>
+          C₁=10%, V₁=?, C₂=2%, V₂=250mL<br>
+          V₁ = (2 × 250) ÷ 10 = <strong style="color:#f0f6ff">50mL of 10% stock</strong><br>
+          Add diluent = 250 − 50 = <strong style="color:#34d399">200mL diluent</strong>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#38bdf8;margin-bottom:8px">Concentration Types</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+          <div style="background:var(--navy3);border-radius:8px;padding:10px;font-size:.75rem;color:#94aec8">
+            <div style="color:#38bdf8;font-weight:700;margin-bottom:4px">W/V %</div>
+            grams per 100mL<br>
+            <span style="color:#f0f6ff">e.g. NaCl 0.9% = 0.9g/100mL</span>
+          </div>
+          <div style="background:var(--navy3);border-radius:8px;padding:10px;font-size:.75rem;color:#94aec8">
+            <div style="color:#38bdf8;font-weight:700;margin-bottom:4px">W/W %</div>
+            grams per 100g<br>
+            <span style="color:#f0f6ff">e.g. topical ointments</span>
+          </div>
+          <div style="background:var(--navy3);border-radius:8px;padding:10px;font-size:.75rem;color:#94aec8">
+            <div style="color:#38bdf8;font-weight:700;margin-bottom:4px">V/V %</div>
+            mL per 100mL<br>
+            <span style="color:#f0f6ff">e.g. 70% IPA = 70mL/100mL</span>
+          </div>
+          <div style="background:var(--navy3);border-radius:8px;padding:10px;font-size:.75rem;color:#94aec8">
+            <div style="color:#38bdf8;font-weight:700;margin-bottom:4px">ppm</div>
+            mg per Litre<br>
+            <span style="color:#f0f6ff">very dilute solutions</span>
+          </div>
+        </div>
+      </div>`},
+    {title:'IV Flow Rates & Infusions',content:`
+      <div style="padding:16px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+          <div style="background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.2);border-radius:10px;padding:12px">
+            <div style="font-size:.6rem;font-weight:700;color:#38bdf8;margin-bottom:6px">FLOW RATE (mL/hr)</div>
+            <div style="font-size:.82rem;font-weight:700;color:#f0f6ff">Volume ÷ Time(hr)</div>
+          </div>
+          <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:12px">
+            <div style="font-size:.6rem;font-weight:700;color:#34d399;margin-bottom:6px">DROPS/MIN</div>
+            <div style="font-size:.78rem;font-weight:700;color:#f0f6ff">(Vol × Drop factor) ÷ Time(min)</div>
+          </div>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#38bdf8;margin-bottom:8px">Example 1 — mL per hour</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.8;margin-bottom:12px">
+          1000mL NS to infuse over 8 hours<br>
+          Rate = 1000 ÷ 8 = <strong style="color:#34d399">125 mL/hr</strong>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#38bdf8;margin-bottom:8px">Example 2 — Drops per minute</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.8;margin-bottom:12px">
+          1000mL over 8hr with 15 gtt/mL drop set:<br>
+          = (1000 × 15) ÷ (8 × 60)<br>
+          = 15000 ÷ 480 = <strong style="color:#34d399">31.25 ≈ 31 gtt/min</strong>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#38bdf8;margin-bottom:8px">Common Drop Factors</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9">
+          • <strong style="color:#f0f6ff">10 gtt/mL</strong> — Macro-drip (adults, blood)<br>
+          • <strong style="color:#f0f6ff">15 gtt/mL</strong> — Macro-drip (standard)<br>
+          • <strong style="color:#f0f6ff">20 gtt/mL</strong> — Macro-drip<br>
+          • <strong style="color:#f0f6ff">60 gtt/mL</strong> — Micro-drip (pediatric, precise dosing)
+        </div>
+      </div>`},
+    {title:'Alligation & Powder Volume',content:`
+      <div style="padding:16px">
+        <div style="font-size:.78rem;font-weight:700;color:#38bdf8;margin-bottom:8px">Alligation Grid Method</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:14px;margin-bottom:14px;font-size:.78rem;color:#94aec8">
+          <div style="font-weight:700;color:#f0f6ff;margin-bottom:8px">Mix 70% and 30% alcohol to make 50%:</div>
+          <div style="display:grid;grid-template-columns:auto auto auto;gap:6px;align-items:center;margin-bottom:10px;font-size:.82rem">
+            <div style="color:#f87171;font-weight:700">70%</div>
+            <div></div>
+            <div style="color:#34d399">→ 20 parts (50-30)</div>
+            <div></div>
+            <div style="color:#38bdf8;font-weight:700">50% (target)</div>
+            <div></div>
+            <div style="color:#f87171;font-weight:700">30%</div>
+            <div></div>
+            <div style="color:#34d399">→ 20 parts (70-50)</div>
+          </div>
+          <div style="color:#fbbf24">Result: Mix equal parts (1:1 ratio)</div>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#38bdf8;margin-bottom:8px">Powder Volume (Reconstitution)</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.8;margin-bottom:12px">
+          <div style="font-weight:700;color:#f0f6ff;margin-bottom:6px">Formula:</div>
+          Final Volume = Diluent Volume + Powder Volume<br>
+          Powder Volume = Final Volume − Diluent Added<br><br>
+          <div style="color:#fbbf24">Example:</div>
+          Amoxicillin 250mg/5mL, reconstitute with 90mL water, get 100mL total<br>
+          Powder volume = 100 − 90 = <strong style="color:#34d399">10mL</strong>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#38bdf8;margin-bottom:8px">Electrolyte Conversions</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.8">
+          mEq = (mg × valence) ÷ molecular weight<br><br>
+          KCl 1g → mEq of K⁺?<br>
+          MW of KCl = 74.6, valence = 1<br>
+          = (1000 × 1) ÷ 74.6 = <strong style="color:#34d399">13.4 mEq</strong>
+        </div>
+      </div>`},
+    {title:'Renal & Pediatric Dose Adjustment',content:`
+      <div style="padding:16px">
+        <div style="background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);border-radius:10px;padding:14px;margin-bottom:14px">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#a78bfa;margin-bottom:8px">COCKCROFT-GAULT EQUATION</div>
+          <div style="font-size:.8rem;font-weight:700;color:#f0f6ff;text-align:center;padding:6px 0">CrCl = [(140−age) × weight(kg)] ÷ [72 × SCr(mg/dL)]</div>
+          <div style="font-size:.7rem;color:#94aec8;text-align:center;margin-top:4px">Multiply by 0.85 for females</div>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#a78bfa;margin-bottom:8px">Worked Example</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.8;margin-bottom:14px">
+          65F, 60kg, SCr 1.2 mg/dL<br>
+          = [(140−65) × 60] ÷ [72 × 1.2] × 0.85<br>
+          = [75 × 60] ÷ 86.4 × 0.85<br>
+          = 4500 ÷ 86.4 × 0.85 = <strong style="color:#34d399">44 mL/min (CKD Stage 3a)</strong>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#a78bfa;margin-bottom:8px">CKD Stages</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.75rem;color:#94aec8;line-height:1.9;margin-bottom:14px">
+          G1: eGFR ≥90 — Normal<br>
+          G2: eGFR 60–89 — Mildly decreased<br>
+          G3a: eGFR 45–59 — Mild–moderate decrease<br>
+          G3b: eGFR 30–44 — Moderate–severe decrease<br>
+          G4: eGFR 15–29 — Severely decreased<br>
+          G5: eGFR &lt;15 — Kidney failure (dialysis)
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#a78bfa;margin-bottom:8px">Pediatric Dose Rules</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9">
+          <strong style="color:#f0f6ff">Clark Rule (by weight):</strong><br>
+          Child dose = (Weight kg ÷ 70) × Adult dose<br><br>
+          <strong style="color:#f0f6ff">Young Rule (by age):</strong><br>
+          Child dose = [Age ÷ (Age + 12)] × Adult dose<br><br>
+          <strong style="color:#fbbf24">⚠ Always use mg/kg dosing when available — preferred method</strong>
+        </div>
+      </div>`},
   ]},
-  {id:'pharmacology',icon:'💊',title:'Pharmacology',color:'#8b5cf6',desc:'Drug actions, categories, pharmacokinetics, and key therapeutic concepts.',topics:[
-    {title:'Pharmacokinetics (ADME)',content:'Absorption: Drug enters bloodstream. Bioavailability (F) = % reaching systemic circulation. Affected by route, formulation, food, pH, first-pass metabolism.\n\nDistribution: Volume of distribution (Vd) = drug amount ÷ plasma concentration. High Vd = drug goes to tissues. Plasma protein binding (PPB) = only free drug is active.\n\nMetabolism: CYP450 in liver. Phase I: oxidation/reduction/hydrolysis (CYP3A4, CYP2C9, CYP2D6). Phase II: conjugation → water-soluble → excretion.\n\nExcretion: Renal (GF + tubular secretion). t½ = 0.693 × Vd ÷ Clearance. Steady-state reached at ~5 half-lives.'},
-    {title:'Drug Interactions',content:'Pharmacokinetic (ADME) interactions:\n• CYP INHIBITION → ↑ drug level (e.g. fluconazole inhibits CYP2C9 → ↑ warfarin → ↑ INR)\n• CYP INDUCTION → ↓ drug level (e.g. rifampin induces CYP3A4 → ↓ many drugs)\n• P-gp inhibition → ↑ drug absorption/CNS penetration\n\nPharmacodynamic interactions:\n• Synergism: opioid + BZD → additive respiratory depression\n• Antagonism: naloxone reverses opioid effects\n• Same mechanism: two SSRIs = serotonin syndrome risk\n\nKey inhibitors: azole antifungals, macrolides, SSRIs, amiodarone\nKey inducers: rifampin, carbamazepine, St. John Wort, phenytoin'},
-    {title:'Therapeutic Drug Monitoring (TDM)',content:'NTI (Narrow Therapeutic Index) drugs — small margin between efficacy and toxicity:\n• Warfarin: monitor INR (target 2-3)\n• Digoxin: monitor levels + K⁺ (hypokalemia → toxicity)\n• Lithium: monitor levels 0.6-1.2 mEq/L\n• Phenytoin: monitor levels 40-80 mcmol/L; zero-order kinetics!\n• Vancomycin: monitor AUC/MIC ratio\n• Aminoglycosides: monitor peaks + troughs\n\nTechnician role: flag NTI drugs, ensure monitoring parameters documented, check for interactions'},
-    {title:'High-Alert Medications (ISMP)',content:'ISMP High-Alert Drugs — require extra care and independent double-check:\n\nTop examples:\n• Insulin (ALL types): check type, dose, route, expiry\n• Anticoagulants (warfarin, heparin, DOACs): bleeding risk\n• Opioids: respiratory depression risk\n• Concentrated electrolytes (KCl IV, NaCl 3%): dilute before use only\n• Chemotherapy: cytotoxic, specialized PPE required\n• Neuromuscular blocking agents: respiratory arrest if given without sedation\n• Methotrexate: weekly dose often confused with daily\n\nStrategy: Look-Alike Sound-Alike (LASA) labels, independent double-checks, TallMan lettering'},
+  {id:'pharmacology',icon:'💊',title:'Pharmacology',color:'#8b5cf6',desc:'Drug actions, categories, pharmacokinetics, and key therapeutic concepts for pharmacy technicians.',topics:[
+    {title:'Pharmacokinetics — ADME',content:`
+      <div style="padding:16px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">
+          <div style="background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.2);border-radius:10px;padding:12px">
+            <div style="font-size:.7rem;font-weight:700;color:#38bdf8;margin-bottom:6px">A — ABSORPTION</div>
+            <div style="font-size:.75rem;color:#94aec8;line-height:1.6">Drug enters bloodstream. Bioavailability (F) = % reaching systemic circulation. Affected by: route, food, pH, first-pass metabolism.</div>
+          </div>
+          <div style="background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);border-radius:10px;padding:12px">
+            <div style="font-size:.7rem;font-weight:700;color:#a78bfa;margin-bottom:6px">D — DISTRIBUTION</div>
+            <div style="font-size:.75rem;color:#94aec8;line-height:1.6">Spread to tissues. Vd = volume of distribution. High Vd = drug goes to tissues. PPB = only FREE drug is active.</div>
+          </div>
+          <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:12px">
+            <div style="font-size:.7rem;font-weight:700;color:#34d399;margin-bottom:6px">M — METABOLISM</div>
+            <div style="font-size:.75rem;color:#94aec8;line-height:1.6">CYP450 liver enzymes. Phase I: oxidation. Phase II: conjugation → water-soluble → excretion ready.</div>
+          </div>
+          <div style="background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);border-radius:10px;padding:12px">
+            <div style="font-size:.7rem;font-weight:700;color:#fb923c;margin-bottom:6px">E — EXCRETION</div>
+            <div style="font-size:.75rem;color:#94aec8;line-height:1.6">Mostly renal (GFR + tubular secretion). t½ = 0.693 × Vd ÷ Clearance. Steady-state at ~5 half-lives.</div>
+          </div>
+        </div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.8">
+          <strong style="color:#fbbf24">Key CYP450 Enzymes:</strong><br>
+          CYP3A4 — most drugs (50%+): statins, CCBs, macrolides<br>
+          CYP2C9 — warfarin, NSAIDs, phenytoin<br>
+          CYP2C19 — PPIs, clopidogrel, SSRIs<br>
+          CYP2D6 — codeine, metoprolol, some antidepressants<br><br>
+          <strong style="color:#f87171">Inhibitors ↑ drug levels</strong> (azole antifungals, macrolides, SSRIs)<br>
+          <strong style="color:#34d399">Inducers ↓ drug levels</strong> (rifampin, carbamazepine, St. John Wort)
+        </div>
+      </div>`},
+    {title:'Drug Interactions',content:`
+      <div style="padding:16px">
+        <div style="font-size:.78rem;font-weight:700;color:#a78bfa;margin-bottom:10px">Types of Drug Interactions</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+          <div style="background:rgba(239,68,68,.08);border-left:3px solid #ef4444;border-radius:0 8px 8px 0;padding:10px 12px">
+            <div style="font-size:.72rem;font-weight:700;color:#f87171;margin-bottom:4px">⚠ MAJOR — Avoid combination</div>
+            <div style="font-size:.75rem;color:#94aec8;line-height:1.6">Warfarin + NSAIDs → ↑ bleeding | Opioid + BZD → respiratory depression | SSRIs + MAOIs → serotonin syndrome | PDE5i + Nitrates → severe hypotension</div>
+          </div>
+          <div style="background:rgba(245,158,11,.08);border-left:3px solid #f59e0b;border-radius:0 8px 8px 0;padding:10px 12px">
+            <div style="font-size:.72rem;font-weight:700;color:#fbbf24;margin-bottom:4px">▲ MODERATE — Monitor closely</div>
+            <div style="font-size:.75rem;color:#94aec8;line-height:1.6">Clopidogrel + Omeprazole → ↓ antiplatelet effect | Statins + Clarithromycin → ↑ myopathy risk | SSRIs + NSAIDs → ↑ GI bleeding</div>
+          </div>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#a78bfa;margin-bottom:8px">Mechanism Types</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9">
+          <strong style="color:#f0f6ff">Pharmacokinetic:</strong> One drug affects ADME of another<br>
+          — CYP inhibition → ↑ drug level (fluconazole → ↑ warfarin)<br>
+          — CYP induction → ↓ drug level (rifampin → ↓ many drugs)<br>
+          — P-gp inhibition → ↑ drug absorption<br><br>
+          <strong style="color:#f0f6ff">Pharmacodynamic:</strong> Additive/opposing effects<br>
+          — Synergism: two CNS depressants → more depression<br>
+          — Antagonism: naloxone reverses opioid effects
+        </div>
+      </div>`},
+    {title:'High-Alert Medications (ISMP)',content:`
+      <div style="padding:16px">
+        <div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:12px;margin-bottom:14px">
+          <div style="font-size:.65rem;font-weight:700;color:#f87171;margin-bottom:6px">⚠ ISMP HIGH-ALERT DRUGS — Extra verification required</div>
+          <div style="font-size:.75rem;color:#94aec8;line-height:1.6">These drugs have a high risk of causing significant patient harm when used in error.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          ${['💉 Insulin (ALL types) — check type, dose, route, expiry. Never abbreviate "units" as "U"',
+             '🩸 Anticoagulants (warfarin, heparin, DOACs) — dosing errors cause bleeding or clots',
+             '😴 Opioids — respiratory depression; check mg vs mcg; morphine vs hydromorphone 5× difference',
+             '🧪 Concentrated electrolytes — KCl IV must be diluted; never give undiluted',
+             '💊 Methotrexate — weekly dose often confused with daily; fatal overdoses reported',
+             '🔬 Chemotherapy — cytotoxic; dedicated workflow, PPE, independent double-check',
+             '😶 Neuromuscular blockers — respiratory arrest; must only be used with ventilator support'].map(item => 
+            `<div style="background:var(--navy3);border-radius:8px;padding:10px;font-size:.78rem;color:#94aec8;line-height:1.5">${item}</div>`
+          ).join('')}
+        </div>
+        <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:10px;margin-top:12px;font-size:.75rem;color:#fbbf24">
+          ⚡ Technician responsibility: Independent double-check, TallMan lettering awareness, flag discrepancies to pharmacist
+        </div>
+      </div>`},
+    {title:'Narrow Therapeutic Index (NTI) Drugs',content:`
+      <div style="padding:16px">
+        <div style="background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);border-radius:10px;padding:12px;margin-bottom:14px;font-size:.78rem;color:#94aec8;line-height:1.6">
+          NTI drugs have a <strong style="color:#a78bfa">small margin</strong> between the effective dose and the toxic dose. Small changes in dose or plasma level can cause toxicity or therapeutic failure.
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+          ${[
+            {drug:'Warfarin',monitor:'INR (target 2–3)',risk:'Bleeding or clots'},
+            {drug:'Digoxin',monitor:'Serum level + K⁺',risk:'Arrhythmia, toxicity'},
+            {drug:'Lithium',monitor:'Serum level 0.6–1.2 mEq/L',risk:'Tremor, seizure, coma'},
+            {drug:'Phenytoin',monitor:'Level 40–80 mcmol/L',risk:'Ataxia, nystagmus; zero-order kinetics!'},
+            {drug:'Vancomycin',monitor:'AUC/MIC monitoring',risk:'Nephrotoxicity, ototoxicity'},
+            {drug:'Cyclosporine',monitor:'Trough levels',risk:'Nephrotoxicity, rejection'},
+          ].map(n => `
+            <div style="background:var(--navy3);border-radius:8px;padding:10px">
+              <div style="font-weight:700;font-size:.8rem;color:#f0f6ff;margin-bottom:3px">${n.drug}</div>
+              <div style="font-size:.68rem;color:#38bdf8;margin-bottom:2px">Monitor: ${n.monitor}</div>
+              <div style="font-size:.68rem;color:#f87171">Risk: ${n.risk}</div>
+            </div>`).join('')}
+        </div>
+        <div style="background:var(--navy3);border-radius:8px;padding:10px;font-size:.75rem;color:#fbbf24">
+          ⚠ For NTI drugs: consistent brand dispensing, flag generic switches to pharmacist, ensure monitoring is in place
+        </div>
+      </div>`},
   ]},
   {id:'compounding',icon:'⚗️',title:'Compounding',color:'#10b981',desc:'Sterile and non-sterile compounding — aseptic technique, BUD, and Canadian NAPRA standards.',topics:[
-    {title:'Non-Sterile Compounding',content:'Preparation of customized medications not requiring sterility:\n• Topical: creams, ointments, gels, lotions, pastes\n• Oral: solutions, suspensions, capsules, troches\n• Other: suppositories, lozenges\n\nKey requirements (NAPRA Model Standards):\n• Dedicated compounding area — clean, clutter-free\n• Appropriate PPE: nitrile gloves, mask, lab coat\n• Calibrated equipment: electronic balance (class A or analytical)\n• Master Formula Record: ingredients, quantities, instructions\n• Compounding Record: batch record for each preparation\n• BUD labelled on all preparations\n• Pharmacist final check before dispensing'},
-    {title:'Sterile Compounding & Aseptic Technique',content:'Preparation of injectable, IV, ophthalmic, or intrathecal products:\n\nEnvironment:\n• ISO 5 (Class 100): critical zone (LAF hood/BSC) — where critical sites exposed\n• ISO 7 (Class 10,000): cleanroom (Buffer Zone)\n• ISO 8 (Class 100,000): ante-area (garbing area)\n\nAseptic technique essentials:\n1. Hand hygiene (surgical scrub technique)\n2. Full garbing: shoe covers, legs, hair/beard cover, mask, gown, sterile gloves\n3. 70% IPA swab → allow to DRY (10-15 sec) — wet = contaminated\n4. No-touch technique: NEVER touch needle tip, syringe tip, vial stopper after swabbing\n5. Work in direct compounding area (DCA) — maintain first air\n6. Single-use needles and syringes'},
-    {title:'Beyond-Use Dating (BUD)',content:'BUD = date/time after which preparation should not be used\n(Shorter than manufacturer expiry — reflects compounding conditions)\n\nNon-Sterile BUD (NAPRA/USP 795):\n• Water-containing oral formulations: 14 days refrigerated\n• Water-containing topicals: 30 days\n• Non-aqueous (oils, ointments): 6 months or <25% of ingredient shelf life\n\nSterile BUD (NAPRA/USP 797):\n• Category 1 (no sterility testing): 12h RT or 24h refrigerated\n• Category 2 (with sterility testing): up to 45 days\n\nLabel must include: Preparation date, BUD date/time, Storage conditions, "Beyond Use Date"'},
-    {title:'Compounding Calculations',content:'Trituration (diluting potent powder):\n1:10 triturate = 1 part active + 9 parts diluent\nUsed when quantity needed is too small to weigh accurately on balance\n\nGeometric dilution method:\n• Add equal volume of diluent to active ingredient\n• Mix thoroughly → add more diluent in equal parts\n• Ensures uniform distribution\n\nLevigating:\n• Grind powder with levigating agent (glycerin, mineral oil)\n• Reduces particle size → smoother topical preparation\n\nEmulsification:\n• W/O emulsion: oil continuous phase (e.g. cold cream)\n• O/W emulsion: water continuous phase (e.g. vanishing cream)\n• HLB value determines emulsifier choice'},
+    {title:'Non-Sterile Compounding',content:`
+      <div style="padding:16px">
+        <div style="font-size:.78rem;font-weight:700;color:#34d399;margin-bottom:10px">Non-Sterile Preparation Types</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+          ${[
+            {type:'Topical',ex:'Creams, ointments, gels, pastes, lotions'},
+            {type:'Oral',ex:'Solutions, suspensions, syrups, capsules'},
+            {type:'Other',ex:'Suppositories, troches, lozenges, lollipops'},
+            {type:'Nasal/Otic',ex:'Drops, sprays'},
+          ].map(i => `<div style="background:var(--navy3);border-radius:8px;padding:10px"><div style="font-weight:700;font-size:.78rem;color:#34d399;margin-bottom:3px">${i.type}</div><div style="font-size:.72rem;color:#94aec8">${i.ex}</div></div>`).join('')}
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#34d399;margin-bottom:8px">NAPRA Requirements</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9;margin-bottom:12px">
+          ✓ Dedicated compounding area — clean, uncluttered<br>
+          ✓ Calibrated equipment (Class A balance or analytical balance)<br>
+          ✓ Appropriate PPE: nitrile gloves, mask, lab coat<br>
+          ✓ Master Formula Record (MFR): standardized instructions<br>
+          ✓ Compounding Record (CR): batch record for each preparation<br>
+          ✓ BUD label on ALL preparations<br>
+          ✓ Pharmacist final check before dispensing
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#34d399;margin-bottom:8px">Compounding Techniques</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9">
+          <strong style="color:#f0f6ff">Levigation:</strong> Grind powder with levigating agent (glycerin, mineral oil) to reduce particle size → smoother topical<br>
+          <strong style="color:#f0f6ff">Trituration:</strong> Dilute potent drug with inert powder (1:10 = 1 part active + 9 parts diluent)<br>
+          <strong style="color:#f0f6ff">Geometric dilution:</strong> Add equal amounts of diluent sequentially → ensures uniform distribution<br>
+          <strong style="color:#f0f6ff">Fusion:</strong> Melt base material, incorporate active drug, pour into molds (suppositories)
+        </div>
+      </div>`},
+    {title:'Sterile Compounding & Aseptic Technique',content:`
+      <div style="padding:16px">
+        <div style="font-size:.78rem;font-weight:700;color:#34d399;margin-bottom:10px">ISO Classification Zones</div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+          ${[
+            {iso:'ISO 5 (Class 100)',zone:'Critical Zone — Direct Compounding Area (DCA)',desc:'Where critical sites are exposed. HEPA-filtered LAF hood or BSC.',color:'#34d399'},
+            {iso:'ISO 7 (Class 10,000)',zone:'Buffer Zone / Cleanroom',desc:'Area surrounding the hood. Full garbing required.',color:'#fbbf24'},
+            {iso:'ISO 8 (Class 100,000)',zone:'Ante-Area',desc:'Where garbing occurs before entering cleanroom.',color:'#f87171'},
+          ].map(z => `
+            <div style="background:var(--navy3);border-left:3px solid ${z.color};border-radius:0 8px 8px 0;padding:10px 12px">
+              <div style="font-weight:700;font-size:.78rem;color:${z.color}">${z.iso} — ${z.zone}</div>
+              <div style="font-size:.72rem;color:#94aec8;margin-top:3px">${z.desc}</div>
+            </div>`).join('')}
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#34d399;margin-bottom:8px">Aseptic Technique Steps</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          ${['1. Hand hygiene — surgical scrub technique (2 min minimum)',
+             '2. Full garbing: shoe covers → legs → hair/beard cover → mask → gown → sterile gloves',
+             '3. Swab with 70% IPA — allow to DRY completely (10–15 sec). Wet = contaminated!',
+             '4. No-touch technique — NEVER touch needle tip, syringe tip, vial stopper after swabbing',
+             '5. Work in DCA — first air must flow directly over critical sites',
+             '6. Single-use needles and syringes only',
+             '7. Check for particulate matter and clarity before dispensing'].map((s,i) =>
+            `<div style="background:var(--navy3);border-radius:8px;padding:9px 12px;font-size:.78rem;color:#94aec8">${s}</div>`
+          ).join('')}
+        </div>
+      </div>`},
+    {title:'Beyond-Use Dating (BUD)',content:`
+      <div style="padding:16px">
+        <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:12px;margin-bottom:14px;font-size:.78rem;color:#94aec8;line-height:1.6">
+          <strong style="color:#fbbf24">BUD</strong> = the date/time after which a compounded preparation should not be used. It is always <strong style="color:#fbbf24">shorter than the manufacturer's expiry date</strong>, reflecting compounding conditions.
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#34d399;margin-bottom:8px">Non-Sterile BUD (NAPRA / USP 795)</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9;margin-bottom:12px">
+          Water-containing oral solutions: <strong style="color:#f0f6ff">14 days refrigerated</strong><br>
+          Water-containing topicals (creams, gels): <strong style="color:#f0f6ff">30 days</strong><br>
+          Non-aqueous (ointments, oils): <strong style="color:#f0f6ff">6 months</strong> or &lt;25% ingredient shelf life<br>
+          Capsules (non-aqueous): <strong style="color:#f0f6ff">6 months</strong>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#34d399;margin-bottom:8px">Sterile BUD (NAPRA / USP 797)</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9;margin-bottom:12px">
+          Category 1 (no sterility testing): <strong style="color:#f0f6ff">12h room temp</strong> or <strong style="color:#f0f6ff">24h refrigerated</strong><br>
+          Category 2 (with sterility testing): <strong style="color:#f0f6ff">up to 45 days</strong>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#34d399;margin-bottom:8px">Required Label Information</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9">
+          ✓ Drug name, strength, quantity<br>
+          ✓ Preparation date<br>
+          ✓ Beyond-Use Date (BUD) — date AND time for steriles<br>
+          ✓ Storage conditions (refrigerate, protect from light, etc.)<br>
+          ✓ "For study purposes only" if applicable<br>
+          ✓ Lot number / compounding record number<br>
+          ✓ Pharmacist and technician initials
+        </div>
+      </div>`},
   ]},
-  {id:'practice',icon:'🏪',title:'Community & Institutional Practice',color:'#f59e0b',desc:'Prescription processing, dispensary software, inventory management, and patient safety in Canadian settings.',topics:[
-    {title:'Prescription Processing (Canada)',content:'Steps to process a Canadian prescription:\n1. RECEIVE: written, verbal (pharmacist only), faxed, electronic/ePrescription\n2. VERIFY: patient ID, prescriber info, DIN, drug name, strength, dose, route, frequency, quantity, refills, date\n3. DATA ENTRY: enter into dispensary software (Kroll, PharmaClik, Fillware, Rx30)\n4. DUR: Drug Utilization Review — interactions, allergies, duplications, dosing alerts\n5. FILL: accurate counting/measuring, correct label\n6. PHARMACIST CHECK: final clinical + accuracy verification\n7. COUNSEL: mandatory counselling for new Rx\n\nValid Canadian Rx must include:\nPatient name, prescriber name/license#/signature, drug name, strength, dose, route, frequency, quantity, date, refills allowed'},
-    {title:'Dispensary Software — Kroll & PharmaClik',content:'Key functions used by technicians:\n\nPatient Profile Management:\n• Demographics, allergies (documented with reaction type), current meds\n• Insurance info: provincial plan + private carrier\n• Notes: pregnancy, lactation, special counselling needs\n\nDUR (Drug Utilization Review):\n• Automated alerts: drug-drug, drug-allergy, drug-disease, dose range\n• Technician: flag alerts → pharmacist resolves\n\nAdjudication (billing):\n• Real-time electronic claims to ODB, PharmaCare, Pharmacovigilance\n• Rejection codes: plan limitation, prior authorization needed, DAW override\n• Technical rejections: wrong DIN, expired cardholder, duplicate claim\n\nLabel generation: includes all required provincial labelling elements'},
-    {title:'Inventory Management',content:'FIFO (First In, First Out):\n• Rotate stock — oldest product dispensed first\n• Check expiry on every order receipt\n• Quarantine expired/recalled products immediately\n\nPAR Levels:\n• Minimum quantity before reordering (Periodic Automatic Replenishment)\n• PAR = reorder point; Order to = maximum quantity\n\nControlled Drugs Inventory:\n• Narcotics (CDSA Schedule I): perpetual inventory, monthly counts, biennial return\n• Targeted substances (BZDs): log all dispensing, annual inventory\n• Discrepancies: report to pharmacist → College + Health Canada if unexplained\n\nCold Chain:\n• Insulin, vaccines, biologics: 2-8°C continuously\n• Temperature logs required (manual or electronic monitoring)\n• Excursion SOP: document, assess viability, report if necessary'},
-    {title:'Insurance & Adjudication in Canada',content:'Public Drug Plans by Province:\n• Ontario: ODB (Ontario Drug Benefit) — seniors 65+, social assistance, high-cost drugs\n• BC: PharmaCare — income-tested universal plan (Fair PharmaCare)\n• Quebec: RAMQ — mandatory universal (public or employer plan)\n• Alberta: Alberta Blue Cross — income-tested, seniors 65+\n\nPrivate Insurance:\n• Sun Life, Manulife, Great-West Life, Green Shield, Blue Cross\n• Coordination of Benefits (COB) = province pays first, private second\n\nPrior Authorization (PA):\n• Required for non-formulary drugs or high-cost biologics\n• Pharmacist/prescriber must submit clinical rationale\n• Common examples: biologic DMARDs, some diabetes drugs, specialty medications\n\nDAW codes:\n• DAW 0: generic if available\n• DAW 1: Dispense as Written (brand medically necessary — prescriber certifies)\n• DAW 2: Patient requested brand (patient pays difference)'},
+  {id:'practice',icon:'🏪',title:'Community & Institutional Practice',color:'#f59e0b',desc:'Prescription processing, dispensary software, inventory, and patient safety in Canadian pharmacy.',topics:[
+    {title:'Prescription Processing in Canada',content:`
+      <div style="padding:16px">
+        <div style="font-size:.78rem;font-weight:700;color:#fbbf24;margin-bottom:10px">Step-by-Step Dispensing Workflow</div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+          ${[
+            {step:'1',title:'Receive Prescription',desc:'Written, faxed, verbal (pharmacist), or electronic (ePrescription)'},
+            {step:'2',title:'Verify Completeness',desc:'Patient name/DOB, prescriber info+signature, drug, strength, dose, route, frequency, quantity, refills, date'},
+            {step:'3',title:'Data Entry',desc:'Enter into Kroll / PharmaClik / Fillware. Create or update patient profile'},
+            {step:'4',title:'DUR — Drug Utilization Review',desc:'System checks: drug-drug interactions, drug-allergy, duplicate therapy, dose range alerts'},
+            {step:'5',title:'Fill & Label',desc:'Accurate count/measure. Label generated with all required info. Match label to original Rx'},
+            {step:'6',title:'Pharmacist Final Check',desc:'Clinical + accuracy verification. Pharmacist initials. Cannot be done by technician alone'},
+            {step:'7',title:'Counsel & Dispense',desc:'Mandatory pharmacist counselling for new prescriptions. Document in patient profile'},
+          ].map(s => `
+            <div style="background:var(--navy3);border-radius:8px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start">
+              <div style="background:#f59e0b;color:#000;font-size:.65rem;font-weight:800;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">${s.step}</div>
+              <div><div style="font-size:.78rem;font-weight:700;color:#f0f6ff;margin-bottom:2px">${s.title}</div><div style="font-size:.72rem;color:#94aec8">${s.desc}</div></div>
+            </div>`).join('')}
+        </div>
+        <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:10px;font-size:.75rem;color:#fbbf24">
+          A valid Canadian prescription must include: Patient name + DOB, prescriber name + license# + signature, drug name, strength, dose, route, frequency, quantity, date, refills
+        </div>
+      </div>`},
+    {title:'Dispensary Software — Kroll & PharmaClik',content:`
+      <div style="padding:16px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+          ${[
+            {func:'Patient Profile',desc:'Demographics, allergies (with reaction type), current meds, insurance info, special notes'},
+            {func:'DUR Alerts',desc:'Automated: drug-drug, drug-allergy, drug-disease interactions. Technician flags → pharmacist resolves'},
+            {func:'Adjudication',desc:'Real-time electronic billing to ODB, PharmaCare, RAMQ, private insurers. Handles rejections'},
+            {func:'Label Generation',desc:'All required provincial labelling elements. Auxiliary labels (refrigerate, take with food, etc.)'},
+            {func:'Inventory Tracking',desc:'FIFO rotation, expiry monitoring, reorder alerts, controlled substance logging'},
+            {func:'Refill Management',desc:'Refill reminders, TIR (technician-initiated refills where authorized), refill too soon alerts'},
+          ].map(f => `
+            <div style="background:var(--navy3);border-radius:8px;padding:10px">
+              <div style="font-weight:700;font-size:.78rem;color:#fbbf24;margin-bottom:4px">${f.func}</div>
+              <div style="font-size:.72rem;color:#94aec8;line-height:1.5">${f.desc}</div>
+            </div>`).join('')}
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#fbbf24;margin-bottom:8px">Common Rejection Codes</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9">
+          <strong style="color:#f0f6ff">Plan limitation:</strong> Drug not on formulary → prior authorization needed<br>
+          <strong style="color:#f0f6ff">Refill too soon:</strong> Adjudication detects early fill → override may be needed<br>
+          <strong style="color:#f0f6ff">Duplicate claim:</strong> Same drug billed twice<br>
+          <strong style="color:#f0f6ff">Expired cardholder:</strong> Patient coverage ended → verify coverage<br>
+          <strong style="color:#f0f6ff">DIN mismatch:</strong> Wrong Drug Identification Number entered
+        </div>
+      </div>`},
+    {title:'Inventory Management & Cold Chain',content:`
+      <div style="padding:16px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+          <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:12px">
+            <div style="font-size:.7rem;font-weight:700;color:#34d399;margin-bottom:6px">FIFO METHOD</div>
+            <div style="font-size:.75rem;color:#94aec8;line-height:1.6">First In, First Out — rotate stock so oldest product is dispensed first. Check expiry on every order.</div>
+          </div>
+          <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:12px">
+            <div style="font-size:.7rem;font-weight:700;color:#fbbf24;margin-bottom:6px">PAR LEVELS</div>
+            <div style="font-size:.75rem;color:#94aec8;line-height:1.6">Minimum quantity before reordering. PAR = reorder point. Order up to maximum. Prevents stockouts.</div>
+          </div>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#fbbf24;margin-bottom:8px">Controlled Drugs Inventory</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9;margin-bottom:12px">
+          <strong style="color:#f87171">Narcotics (CDSA Schedule I):</strong><br>
+          — Perpetual inventory: quantity in/out must balance at all times<br>
+          — Biennial inventory count (every 2 years)<br>
+          — Discrepancies &gt;2%: report to Health Canada<br>
+          — Records kept minimum 2 years<br>
+          — Loss/theft: police report + Health Canada notification<br><br>
+          <strong style="color:#fbbf24">Targeted Substances (BZDs — Schedule IV):</strong><br>
+          — Log all dispensing; less stringent than narcotics
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#fbbf24;margin-bottom:8px">Cold Chain Management</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9">
+          Insulin, vaccines, biologics: store at <strong style="color:#38bdf8">2–8°C continuously</strong><br>
+          Temperature logs required (manual or electronic monitoring)<br>
+          Excursion protocol: document → assess viability → report if necessary<br>
+          Never refreeze thawed vaccines<br>
+          Some products (e.g. biologic pens): can tolerate room temp for limited time
+        </div>
+      </div>`},
+    {title:'Canadian Insurance & Drug Plans',content:`
+      <div style="padding:16px">
+        <div style="font-size:.78rem;font-weight:700;color:#fbbf24;margin-bottom:10px">Provincial Public Drug Plans</div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+          ${[
+            {prov:'Ontario',plan:'Ontario Drug Benefit (ODB)',who:'Seniors 65+, social assistance, high-cost drugs program'},
+            {prov:'BC',plan:'BC PharmaCare',who:'Income-tested universal plan (Fair PharmaCare)'},
+            {prov:'Quebec',plan:'RAMQ',who:'Mandatory universal — public or employer plan required'},
+            {prov:'Alberta',plan:'Alberta Blue Cross',who:'Income-tested, seniors 65+, social assistance'},
+            {prov:'Manitoba',plan:'Pharmacare',who:'Income-tested, deductible-based'},
+          ].map(p => `
+            <div style="background:var(--navy3);border-radius:8px;padding:10px 12px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
+                <div style="font-weight:700;font-size:.78rem;color:#fbbf24">${p.prov}</div>
+                <div style="font-size:.65rem;color:#38bdf8">${p.plan}</div>
+              </div>
+              <div style="font-size:.72rem;color:#94aec8">${p.who}</div>
+            </div>`).join('')}
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#fbbf24;margin-bottom:8px">Prior Authorization (PA)</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.8">
+          Required for: non-formulary drugs, high-cost biologics, specialty medications<br>
+          Process: prescriber submits clinical rationale to plan<br>
+          Examples: biologic DMARDs (rheumatoid arthritis), some GLP-1 agonists, DOAC exceptions<br><br>
+          <strong style="color:#f0f6ff">DAW Codes:</strong><br>
+          DAW 0: generic if available (default)<br>
+          DAW 1: brand required — prescriber certifies medical necessity<br>
+          DAW 2: patient requests brand — patient pays difference
+        </div>
+      </div>`},
+    {title:'Patient Safety & Medication Errors',content:`
+      <div style="padding:16px">
+        <div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:12px;margin-bottom:14px">
+          <div style="font-size:.7rem;font-weight:700;color:#f87171;margin-bottom:6px">5 RIGHTS OF MEDICATION SAFETY</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            ${['Right Patient','Right Drug','Right Dose','Right Route','Right Time'].map(r =>
+              `<div style="background:rgba(239,68,68,.15);border-radius:20px;padding:4px 10px;font-size:.72rem;font-weight:700;color:#f87171">${r}</div>`
+            ).join('')}
+          </div>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#f87171;margin-bottom:8px">Common Error Types — Look-Alike Sound-Alike (LASA)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px">
+          ${[
+            ['HydrOXYzine','HydrALAzine'],
+            ['Metformin','Metronidazole'],
+            ['Prednisone','Prednisolone'],
+            ['Warfarin','Warfarin (dose!)'],
+            ['Morphine 10mg','HYDROmorphone 2mg'],
+            ['Insulin Lente','Insulin Lantus'],
+          ].map(pair => `
+            <div style="background:var(--navy3);border-radius:8px;padding:8px;font-size:.72rem">
+              <span style="color:#f87171;font-weight:700">${pair[0]}</span>
+              <span style="color:#94aec8"> ≠ </span>
+              <span style="color:#fbbf24;font-weight:700">${pair[1]}</span>
+            </div>`).join('')}
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#f87171;margin-bottom:8px">Safe Writing Rules</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9">
+          ❌ Trailing zero: <span style="color:#f87171">1.0mg</span> → looks like 10mg | Write <span style="color:#34d399">1mg</span><br>
+          ❌ Naked decimal: <span style="color:#f87171">.5mg</span> → looks like 5mg | Write <span style="color:#34d399">0.5mg</span><br>
+          ❌ Abbreviate units: <span style="color:#f87171">10U</span> → looks like 100 | Write <span style="color:#34d399">10 units</span><br>
+          ❌ μg confusion: <span style="color:#f87171">μg</span> → looks like mg | Write <span style="color:#34d399">mcg</span><br>
+          ✅ TallMan lettering: <strong>hydrOXYzine</strong> vs <strong>hydrALAzine</strong>
+        </div>
+      </div>`},
   ]},
   {id:'law',icon:'⚖️',title:'Pharmacy Law & Ethics',color:'#ef4444',desc:'Canadian federal and provincial pharmacy legislation, controlled substances, and professional ethics.',topics:[
-    {title:'Federal Drug Legislation',content:'Food and Drugs Act (FDA):\n• Regulates safety, efficacy, quality of all drugs marketed in Canada\n• Health Canada = federal regulator\n• Drug Identification Number (DIN): required for all marketed drugs\n• Natural Product Number (NPN): natural health products\n• Drug Schedules: Rx-only (Schedule I), pharmacist-access (II), OTC with pharmacist access (III), general sale (Unscheduled)\n\nControlled Drugs and Substances Act (CDSA):\n• Schedules I–VIII regulate narcotics, controlled drugs, targeted substances\n• Schedule I: Narcotics (opioids, cocaine) — Rx required, perpetual inventory\n• Schedule III: Amphetamines, barbiturates — Rx required\n• Schedule IV: Benzodiazepines, anabolic steroids — Rx required, some provinces\n• Schedule VI: Precursor chemicals (ephedrine, pseudoephedrine)'},
-    {title:'Provincial Regulation — Ontario',content:'Regulated Health Professions Act (RHPA):\n• Framework for all regulated health professions in Ontario\n• Defines controlled acts (restricted to regulated health professionals)\n\nDrug and Pharmacies Regulation Act (DPRA):\n• Regulates pharmacy practice in Ontario\n\nOntario College of Pharmacists (OCP):\n• Registers and regulates pharmacists AND pharmacy technicians\n• Sets practice standards, investigates complaints\n• Pharmacy technicians regulated in Ontario since 2011\n\nPharmacy Technician Scope (Ontario):\n• Dispensing under pharmacist supervision\n• Accepting verbal orders FROM PRESCRIBERS (not patients)\n• Technician-initiated refills (TIR): authorized in Ontario\n• Cannot perform final check (pharmacist only in most provinces)\n• Cannot provide clinical counselling'},
-    {title:'NAPRA Drug Schedules',content:'NAPRA (National Association of Pharmacy Regulatory Authorities) schedules:\n\nSchedule I — Prescription Required:\n• High safety concern; requires Rx and pharmacist dispensing\n• Examples: antibiotics, opioids, warfarin, SSRIs, insulin (in most provinces)\n\nSchedule II — Pharmacist Consultation Required:\n• Behind the counter; requires pharmacist interaction\n• Examples: emergency contraception, insulin (in some provinces), syringes\n\nSchedule III — Self-Selection (Professional Area):\n• In professional area of pharmacy; no Rx but in pharmacy only\n• Examples: OTC antihistamines, ibuprofen >200mg, some decongestants\n\nUnscheduled — General Sale:\n• Sold anywhere including grocery stores\n• Examples: acetaminophen 325-500mg tabs, vitamins, sunscreen, antacids'},
-    {title:'Controlled Substance Record Keeping',content:'Narcotics (CDSA Schedule I):\n• Perpetual inventory: quantity in and out must balance at all times\n• Every dispensing recorded: patient, prescriber, date, quantity, DIN\n• Biennial inventory count — every 2 years\n• Discrepancies >2% reported to Health Canada\n• Records kept minimum 2 years\n• Loss/theft: police report + Health Canada notification\n\nTargeted Substances (BZDs — Schedule IV):\n• Record of all receipts and dispensing maintained\n• Less stringent than narcotics but still required\n\nDestructions:\n• Patient returns: accept (harm reduction); pharmacist supervises destruction\n• Expired narcotics: licensed destruction, witnessed, documented\n• MedReturn program: community drop-off for safe drug disposal'},
-    {title:'Professional Ethics',content:'Core ethical principles:\n\nAutonomy: Patient has right to make informed decisions. Provide information without coercing. Respect refusal of medication.\n\nBeneficence: Act in patient\'s best interest. Recommend most appropriate therapy. Monitor outcomes.\n\nNon-maleficence: "Do no harm." DUR, interaction checking, error prevention, proper labelling.\n\nJustice: Fair access regardless of background, ability to pay, race, language.\n\nPrivacy (PIPEDA + provincial legislation):\n• Patient health information is confidential\n• Minimum necessary disclosure principle\n• Circle of care: sharing within treatment team is permitted\n• Patient consent required for disclosure outside circle of care\n• Mandatory reporting exceptions: suspected child abuse, public health threat (communicable disease)\n• Pharmacy records: minimum 10 years retention (varies by province)'},
+    {title:'Federal Legislation — FDA & CDSA',content:`
+      <div style="padding:16px">
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+          <div style="background:rgba(239,68,68,.08);border-left:4px solid #ef4444;border-radius:0 10px 10px 0;padding:12px">
+            <div style="font-size:.78rem;font-weight:700;color:#f87171;margin-bottom:5px">Food and Drugs Act (FDA)</div>
+            <div style="font-size:.75rem;color:#94aec8;line-height:1.7">Regulates safety, efficacy, and quality of all drugs marketed in Canada. Health Canada = federal regulator. Every marketed drug requires a Drug Identification Number (DIN). Natural health products require an NPN.</div>
+          </div>
+          <div style="background:rgba(239,68,68,.08);border-left:4px solid #f97316;border-radius:0 10px 10px 0;padding:12px">
+            <div style="font-size:.78rem;font-weight:700;color:#fb923c;margin-bottom:5px">Controlled Drugs and Substances Act (CDSA)</div>
+            <div style="font-size:.75rem;color:#94aec8;line-height:1.7">Regulates narcotics, controlled drugs, and targeted substances. Divided into 8 Schedules based on risk.</div>
+          </div>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#f87171;margin-bottom:8px">CDSA Schedules</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          ${[
+            {sched:'Schedule I',drugs:'Narcotics — opioids, cocaine',rules:'Rx required; perpetual inventory; biennial return; records 2+ years'},
+            {sched:'Schedule III',drugs:'Amphetamines, barbiturates',rules:'Rx required; maintained records'},
+            {sched:'Schedule IV',drugs:'Benzodiazepines, anabolic steroids',rules:'Rx required; dispensing records maintained'},
+            {sched:'Schedule VI',drugs:'Precursors (ephedrine, pseudoephedrine)',rules:'Restricted sale; ID required in many jurisdictions'},
+          ].map(s => `
+            <div style="background:var(--navy3);border-radius:8px;padding:9px 12px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
+                <span style="font-size:.75rem;font-weight:700;color:#f87171">${s.sched}</span>
+                <span style="font-size:.65rem;color:#fbbf24">${s.drugs}</span>
+              </div>
+              <div style="font-size:.7rem;color:#94aec8">${s.rules}</div>
+            </div>`).join('')}
+        </div>
+      </div>`},
+    {title:'NAPRA Drug Schedules',content:`
+      <div style="padding:16px">
+        <div style="font-size:.78rem;color:#94aec8;line-height:1.6;margin-bottom:14px">NAPRA (National Association of Pharmacy Regulatory Authorities) classifies all drugs into 4 schedules based on the level of professional oversight needed.</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          ${[
+            {sched:'Schedule I',label:'PRESCRIPTION REQUIRED',color:'#ef4444',ex:'Antibiotics, opioids, warfarin, SSRIs, insulin (most provinces)',rule:'Requires valid prescription. Must be dispensed by or under supervision of pharmacist. Cannot be sold OTC.'},
+            {sched:'Schedule II',label:'PHARMACIST CONSULTATION',color:'#f97316',ex:'Emergency contraception, insulin syringes, some vaccines',rule:'Kept behind counter. Customer must speak with pharmacist. No Rx needed but professional advice required.'},
+            {sched:'Schedule III',label:'PHARMACY ONLY (Self-selection)',color:'#fbbf24',ex:'OTC antihistamines, ibuprofen 400mg+, some decongestants',rule:'In professional area of pharmacy. Customer selects without Rx. Pharmacist available if needed.'},
+            {sched:'Unscheduled',label:'GENERAL SALE',color:'#34d399',ex:'Acetaminophen 325–500mg, vitamins, sunscreen, antacids',rule:'Sold anywhere — grocery stores, gas stations. No professional oversight required.'},
+          ].map(s => `
+            <div style="background:var(--navy3);border-left:4px solid ${s.color};border-radius:0 10px 10px 0;padding:12px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+                <span style="font-size:.75rem;font-weight:700;color:${s.color}">${s.sched}</span>
+                <span style="background:${s.color}22;color:${s.color};font-size:.55rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:10px">${s.label}</span>
+              </div>
+              <div style="font-size:.72rem;color:#94aec8;margin-bottom:4px"><strong style="color:#f0f6ff">Examples:</strong> ${s.ex}</div>
+              <div style="font-size:.72rem;color:#94aec8">${s.rule}</div>
+            </div>`).join('')}
+        </div>
+      </div>`},
+    {title:'Ontario Pharmacy Regulation',content:`
+      <div style="padding:16px">
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+          ${[
+            {law:'Regulated Health Professions Act (RHPA)',desc:'Framework for ALL regulated health professions in Ontario. Defines controlled acts — procedures that can only be performed by regulated professionals (e.g. dispensing a drug is a controlled act).'},
+            {law:'Drug and Pharmacies Regulation Act (DPRA)',desc:'Regulates pharmacy practice specifically in Ontario. Governs pharmacy licensing, ownership, and operational requirements.'},
+            {law:'Ontario College of Pharmacists (OCP)',desc:'Registers and regulates both pharmacists AND pharmacy technicians in Ontario. Sets practice standards, handles complaints, enforces discipline. Pharmacy technicians became regulated in Ontario in 2011.'},
+          ].map(l => `
+            <div style="background:var(--navy3);border-left:3px solid #ef4444;border-radius:0 8px 8px 0;padding:12px">
+              <div style="font-size:.78rem;font-weight:700;color:#f87171;margin-bottom:5px">${l.law}</div>
+              <div style="font-size:.74rem;color:#94aec8;line-height:1.6">${l.desc}</div>
+            </div>`).join('')}
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#f87171;margin-bottom:8px">Pharmacy Technician Scope (Ontario)</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9">
+          ✅ CAN DO: Receive written prescriptions, enter data, fill prescriptions under pharmacist supervision, accept verbal orders FROM PRESCRIBERS, technician-initiated refills (TIR)<br><br>
+          ❌ CANNOT: Perform final clinical check (pharmacist only), provide clinical counselling to patients, adapt prescriptions (in Ontario), override DUR alerts independently
+        </div>
+      </div>`},
+    {title:'Professional Ethics',content:`
+      <div style="padding:16px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+          ${[
+            {principle:'Autonomy',icon:'👤',color:'#38bdf8',desc:'Respect patient's right to make informed decisions. Provide information without coercing. Respect refusal of medication.'},
+            {principle:'Beneficence',icon:'❤️',color:'#34d399',desc:'Act in patient's best interest. Recommend most appropriate therapy. Ensure medications are appropriate.'},
+            {principle:'Non-maleficence',icon:'🛡️',color:'#f87171',desc:'"Do no harm." DUR checks, interaction screening, error prevention, accurate dispensing.'},
+            {principle:'Justice',icon:'⚖️',color:'#fbbf24',desc:'Fair access to medications regardless of background, ability to pay, race, or language.'},
+          ].map(p => `
+            <div style="background:var(--navy3);border-top:3px solid ${p.color};border-radius:0 0 10px 10px;padding:12px">
+              <div style="font-size:.8rem;font-weight:700;color:${p.color};margin-bottom:5px">${p.icon} ${p.principle}</div>
+              <div style="font-size:.72rem;color:#94aec8;line-height:1.6">${p.desc}</div>
+            </div>`).join('')}
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#f87171;margin-bottom:8px">Confidentiality (PIPEDA + Provincial Privacy Laws)</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9">
+          Patient health information is confidential<br>
+          <strong style="color:#f0f6ff">Circle of care:</strong> sharing within treatment team is permitted without explicit consent<br>
+          <strong style="color:#f0f6ff">Outside circle of care:</strong> patient consent required<br>
+          <strong style="color:#fbbf24">Mandatory reporting exceptions:</strong> suspected child abuse, communicable disease (public health threat), court order<br>
+          Records retention: minimum 10 years (varies by province)
+        </div>
+      </div>`},
   ]},
-  {id:'patientcare',icon:'🤝',title:'Patient Care',color:'#ec4899',desc:'Communication, medication adherence, counselling, and medication reconciliation — Canadian pharmacy technician focus.',topics:[
-    {title:'Communication Skills',content:'Professional communication in pharmacy:\n\nOpen-ended questions: "Tell me how you have been taking your medication"\nClosed questions: "Are you allergic to penicillin? Yes or no?"\n\nActive listening:\n• Maintain appropriate eye contact (culturally sensitive)\n• Nod and use affirmations ("I see", "I understand")\n• Don\'t interrupt — let patient finish speaking\n• Reflect back: "So what you are telling me is..."\n\nTeach-back method:\n"Just to make sure I explained it clearly, can you tell me how you will take this?"\n(Identifies comprehension gaps without embarrassing patient)\n\nBarriers to address:\n• Language: use professional interpreters (not family) for health decisions\n• Low health literacy: plain language, visual aids, simplified instructions\n• Hearing impairment: face patient, speak clearly, provide written instructions\n• Cultural differences: non-judgmental, respect health beliefs'},
-    {title:'Medication Adherence',content:'Adherence = % of prescribed doses actually taken correctly\n\nFactors reducing adherence:\n• Complex regimens (polypharmacy — ≥5 meds)\n• Side effects (SSRIs: sexual dysfunction; ACEi: cough)\n• Cost (most common barrier in Canada)\n• Forgetting (most common reported reason)\n• No perceived need ("I feel fine")\n• Cultural beliefs about medication\n\nStrategies to improve adherence:\n• Simplify: OD dosing preferred over BID or TID when possible\n• Compliance packaging: blister packs (PillPak)\n• Medication synchronization: all refills on same day\n• Reminder apps / pill organizers\n• Address cost: generic substitution, ODB special authorization, compassionate access\n• Follow-up calls (pharmacist/tech)\n• Motivational interviewing approach — non-judgmental'},
-    {title:'Patient Counselling Points',content:'Key counselling for common medications:\n\nWarfarin: consistent Vit K (leafy greens) intake, avoid NSAIDs/Aspirin, watch for unusual bleeding/bruising, regular INR monitoring\n\nMetformin: take WITH food to ↓ GI upset, hold before IV contrast or surgery, annual B12 check\n\nLevothyroxine: take on EMPTY STOMACH 30-60min before food, separate from Ca²⁺, iron, antacids by 4h, annual TSH\n\nStatins: report muscle pain immediately (CK check), avoid grapefruit (simvastatin/atorvastatin), take at night (simvastatin)\n\nACEi: dry cough is expected but report swelling (angioedema), avoid NSAIDs, potassium-sparing diet\n\nAntibiotics: complete FULL COURSE even if feeling better, take amoxicillin with food, no alcohol with metronidazole\n\nBZDs: do NOT stop abruptly (seizure risk), avoid alcohol and driving, short-term use only'},
-    {title:'Medication Reconciliation',content:'Medication reconciliation = comparing patient\'s actual medication list with orders/prescriptions to find discrepancies\n\nBPMH (Best Possible Medication History):\n• Collect from patient + pharmacy records + prescriber\n• ALL medications: Rx, OTC, herbals, vitamins, supplements\n• Actual patient usage (not just what is prescribed — ask "how do you actually take it?")\n• Doses, frequencies, and when last taken\n\nProcess at key transitions:\n1. ADMISSION: BPMH vs hospital orders\n2. TRANSFER: sending unit meds vs receiving unit orders\n3. DISCHARGE: hospital meds vs discharge prescription\n\nStatistics (ISMP Canada):\n• 40-70% of patients have ≥1 medication error at transitions of care\n• Most common errors: omission, wrong dose, duplicate therapy\n• Technicians often lead BPMH collection in hospitals'},
-    {title:'Special Populations',content:'Elderly patients (65+):\n• Polypharmacy risk (≥5 medications = high risk for interactions + falls)\n• ↓ Renal + hepatic function → drug accumulation → toxicity\n• Beers Criteria: medications potentially inappropriate in elderly\n• High-risk drug classes: BZDs, anticholinergics, NSAIDs, hypnotics\n• Falls risk: antihypertensives (orthostatic hypotension), sedatives, diuretics\n• Blister packs (compliance packaging) often very helpful\n\nPediatric patients:\n• Weight-based dosing (mg/kg) — DOUBLE CHECK calculations\n• Age-appropriate formulations: liquids preferred <5y, dispersible tabs 5-12y\n• Pediatric doses are NOT just scaled adult doses for all drugs\n• Child-resistant caps required (unless senior-friendly requested by patient)\n• Parent/caregiver education critical — show how to measure liquid doses\n\nPregnant patients:\n• Always check if drug is safe — most drugs have limited pregnancy data\n• SAFE: Acetaminophen (all trimesters), many antibiotics (amoxicillin, cephalexin), insulin\n• AVOID: NSAIDs (3rd trimester → premature closure ductus arteriosus), warfarin, valproate, ACEi/ARBs\n• Breastfeeding: check LactMed (NIH database) or e-Lactancia — pharmacist to advise'},
+  {id:'patientcare',icon:'🤝',title:'Patient Care',color:'#ec4899',desc:'Communication, adherence, counselling, and medication reconciliation for Canadian pharmacy technicians.',topics:[
+    {title:'Communication Skills',content:`
+      <div style="padding:16px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+          <div style="background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);border-radius:10px;padding:12px">
+            <div style="font-size:.7rem;font-weight:700;color:#f472b6;margin-bottom:6px">OPEN-ENDED QUESTIONS</div>
+            <div style="font-size:.75rem;color:#94aec8;line-height:1.6">Encourage detailed responses<br><br>"Tell me how you have been taking your medication"<br>"What concerns do you have?"</div>
+          </div>
+          <div style="background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);border-radius:10px;padding:12px">
+            <div style="font-size:.7rem;font-weight:700;color:#f472b6;margin-bottom:6px">CLOSED QUESTIONS</div>
+            <div style="font-size:.75rem;color:#94aec8;line-height:1.6">Get specific yes/no answers<br><br>"Are you allergic to penicillin?"<br>"Have you taken this before?"</div>
+          </div>
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#f472b6;margin-bottom:8px">Teach-Back Method</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.6;margin-bottom:12px">
+          After counselling: <em style="color:#f0f6ff">"Just to make sure I explained this clearly, can you tell me how you will take this medication?"</em><br><br>
+          This identifies gaps in understanding without blaming the patient. Gold standard for health literacy.
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#f472b6;margin-bottom:8px">Communication Barriers</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9">
+          <strong style="color:#f0f6ff">Language:</strong> Use professional interpreters — NOT family members for clinical decisions<br>
+          <strong style="color:#f0f6ff">Low health literacy:</strong> Plain language, visual aids, simplified instructions, teach-back<br>
+          <strong style="color:#f0f6ff">Hearing impairment:</strong> Face patient directly, speak clearly, provide written instructions<br>
+          <strong style="color:#f0f6ff">Cultural differences:</strong> Non-judgmental approach, respect health beliefs<br>
+          <strong style="color:#f0f6ff">Privacy:</strong> Use counselling booth for sensitive conversations
+        </div>
+      </div>`},
+    {title:'Medication Adherence',content:`
+      <div style="padding:16px">
+        <div style="font-size:.78rem;font-weight:700;color:#f472b6;margin-bottom:10px">Factors Reducing Adherence</div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+          ${[
+            {factor:'Complex regimens',detail:'Polypharmacy (≥5 meds), multiple daily doses — simplify where possible'},
+            {factor:'Side effects',detail:'SSRIs: sexual dysfunction. ACEi: cough. Metformin: GI upset — address proactively'},
+            {factor:'Cost barriers',detail:'Most common barrier in Canada — generic substitution, ODB programs, compassionate access'},
+            {factor:'Asymptomatic disease',detail:'HTN, diabetes — "I feel fine" — education on long-term consequences'},
+            {factor:'Forgetting',detail:'Pill organizers, blister packs, reminder apps, medication synchronization'},
+          ].map(f => `
+            <div style="background:var(--navy3);border-radius:8px;padding:9px 12px;display:flex;gap:8px">
+              <span style="color:#f472b6;flex-shrink:0">●</span>
+              <div><span style="font-size:.78rem;font-weight:700;color:#f0f6ff">${f.factor}:</span> <span style="font-size:.75rem;color:#94aec8">${f.detail}</span></div>
+            </div>`).join('')}
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#f472b6;margin-bottom:8px">Strategies to Improve Adherence</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9">
+          ✓ Blister packs (compliance packaging / PillPak)<br>
+          ✓ Medication synchronization — all refills same pickup day<br>
+          ✓ Reminder apps / smart pill dispensers<br>
+          ✓ Generic substitution to reduce cost<br>
+          ✓ Follow-up calls from pharmacy team<br>
+          ✓ Motivational interviewing — non-judgmental, patient-centred<br>
+          ✓ Simplified regimen (OD preferred over BID/TID when equivalent)
+        </div>
+      </div>`},
+    {title:'Key Counselling Points by Drug',content:`
+      <div style="padding:16px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          ${[
+            {drug:'Warfarin',points:['Consistent Vitamin K intake (leafy greens)','Avoid NSAIDs and aspirin — ↑ bleeding','Watch for unusual bruising, bleeding gums, dark stools','Regular INR monitoring — do NOT miss appointments','Many interactions — check with pharmacist before ANY new med']},
+            {drug:'Metformin',points:['Take WITH food to reduce GI upset','Start low dose, titrate slowly','Hold before IV contrast or major surgery (notify doctor)','Annual B12 check (long-term use → B12 deficiency)','Report persistent nausea/vomiting']},
+            {drug:'Levothyroxine',points:['Take on EMPTY STOMACH 30–60 min before food','Separate from Ca²⁺, iron, antacids by at least 4 hours','Consistent brand is important (NTI drug)','Annual TSH check — do not adjust dose without testing','Takes 4–6 weeks to reach steady state']},
+            {drug:'ACE Inhibitors',points:['Dry cough is a known expected side effect','Report any swelling of face/lips/tongue immediately (angioedema)','Avoid NSAIDs — ↑ kidney risk','Avoid high-potassium foods if K⁺ is elevated','Do not take during pregnancy']},
+            {drug:'Antibiotics',points:['Complete the FULL COURSE even if feeling better','Take amoxicillin with food to ↓ GI upset','Absolutely no alcohol with metronidazole (severe reaction)','Separate fluoroquinolones from antacids/Ca²⁺ by 2 hours','Report rash, especially in patients taking amoxicillin with mono']},
+          ].map(d => `
+            <div style="background:var(--navy3);border-radius:10px;overflow:hidden">
+              <div style="background:rgba(236,72,153,.1);padding:10px 14px;font-size:.82rem;font-weight:700;color:#f472b6">${d.drug}</div>
+              <div style="padding:10px 14px">
+                ${d.points.map(p => `<div style="font-size:.75rem;color:#94aec8;line-height:1.5;margin-bottom:5px;display:flex;gap:8px"><span style="color:#f472b6;flex-shrink:0">→</span>${p}</div>`).join('')}
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>`},
+    {title:'Medication Reconciliation',content:`
+      <div style="padding:16px">
+        <div style="background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);border-radius:10px;padding:12px;margin-bottom:14px;font-size:.78rem;color:#94aec8;line-height:1.6">
+          <strong style="color:#f472b6">Medication reconciliation</strong> = formal process of comparing a patient's actual medication list with orders/prescriptions at every transition of care to identify and resolve discrepancies.
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#f472b6;margin-bottom:8px">BPMH — Best Possible Medication History</div>
+        <div style="background:var(--navy3);border-radius:8px;padding:12px;font-size:.78rem;color:#94aec8;line-height:1.9;margin-bottom:12px">
+          Collect from: patient interview + pharmacy dispensing records + prescriber<br>
+          Include ALL: Rx drugs, OTC, herbals, vitamins, supplements, patches<br>
+          Ask: <em style="color:#f0f6ff">"How do you actually take it?"</em> — not just what is prescribed<br>
+          Document: dose, frequency, last dose taken, adherence
+        </div>
+        <div style="font-size:.78rem;font-weight:700;color:#f472b6;margin-bottom:8px">Key Transition Points</div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px">
+          ${[
+            {point:'Hospital ADMISSION',action:'BPMH vs hospital admission orders — find discrepancies'},
+            {point:'Unit TRANSFER',action:'Sending unit med list vs receiving unit orders'},
+            {point:'Hospital DISCHARGE',action:'Hospital meds vs discharge prescription — new meds, stopped meds'},
+            {point:'LTC ADMISSION',action:'Community meds vs LTC orders — high risk for errors'},
+          ].map(t => `
+            <div style="background:var(--navy3);border-radius:8px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center">
+              <div style="font-size:.75rem;font-weight:700;color:#f472b6">${t.point}</div>
+              <div style="font-size:.7rem;color:#94aec8;text-align:right;max-width:55%">${t.action}</div>
+            </div>`).join('')}
+        </div>
+        <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:10px;font-size:.75rem;color:#fbbf24">
+          📊 ISMP Canada: 40–70% of patients have ≥1 medication error at transitions of care. Medication reconciliation is the #1 strategy to prevent these errors.
+        </div>
+      </div>`},
+    {title:'Special Populations',content:`
+      <div style="padding:16px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="background:var(--navy3);border-top:3px solid #38bdf8;border-radius:0 0 10px 10px;padding:14px">
+            <div style="font-size:.82rem;font-weight:700;color:#38bdf8;margin-bottom:8px">👴 Elderly Patients (65+)</div>
+            <div style="font-size:.75rem;color:#94aec8;line-height:1.8">
+              <strong style="color:#f0f6ff">Polypharmacy risk:</strong> ≥5 medications = high risk for interactions and falls<br>
+              <strong style="color:#f0f6ff">Physiological changes:</strong> ↓ renal function, ↓ hepatic function, ↓ body water → drug accumulation<br>
+              <strong style="color:#f0f6ff">Beers Criteria:</strong> List of potentially inappropriate medications in elderly<br>
+              High-risk classes: BZDs (falls), anticholinergics (confusion), NSAIDs (renal/GI), hypnotics<br>
+              <strong style="color:#fbbf24">Blister packs</strong> often very beneficial for adherence
+            </div>
+          </div>
+          <div style="background:var(--navy3);border-top:3px solid #34d399;border-radius:0 0 10px 10px;padding:14px">
+            <div style="font-size:.82rem;font-weight:700;color:#34d399;margin-bottom:8px">👶 Pediatric Patients</div>
+            <div style="font-size:.75rem;color:#94aec8;line-height:1.8">
+              <strong style="color:#f0f6ff">ALWAYS weight-based dosing</strong> — double-check calculations<br>
+              Age-appropriate formulations: liquids preferred &lt;5y, dispersible tabs 5–12y<br>
+              <strong style="color:#f87171">Pediatric doses ≠ scaled adult doses</strong> for all drugs<br>
+              Child-resistant caps required unless senior-friendly explicitly requested<br>
+              Parent/caregiver education critical — show how to measure liquid doses
+            </div>
+          </div>
+          <div style="background:var(--navy3);border-top:3px solid #f472b6;border-radius:0 0 10px 10px;padding:14px">
+            <div style="font-size:.82rem;font-weight:700;color:#f472b6;margin-bottom:8px">🤰 Pregnant & Breastfeeding Patients</div>
+            <div style="font-size:.75rem;color:#94aec8;line-height:1.8">
+              <strong style="color:#34d399">SAFE in pregnancy:</strong> Acetaminophen (all trimesters), most penicillins, insulin<br>
+              <strong style="color:#f87171">AVOID in pregnancy:</strong> NSAIDs (3rd trimester), warfarin, valproate, ACEi/ARBs, tetracyclines<br>
+              <strong style="color:#f0f6ff">Breastfeeding:</strong> Check LactMed (NIH) or e-Lactancia database<br>
+              Always refer complex questions to pharmacist — safety data often limited
+            </div>
+          </div>
+        </div>
+      </div>`},
   ]},
 ];
 
@@ -1389,10 +2321,7 @@ function renderAnatomyList(){
         </div>
         <div style="font-size:.75rem;color:var(--text2);line-height:1.55">${a.overview}</div>
       </div>
-      ${anatActive===i?`<div style="border-top:1px solid var(--border)">
-        ${a.structures.map(s=>`<div style="padding:12px 16px;border-bottom:1px solid var(--border)"><div style="font-size:.78rem;font-weight:700;color:${a.color};margin-bottom:5px">${s.name}</div><div style="font-size:.76rem;color:var(--text2);line-height:1.65">${s.desc}</div></div>`).join('')}
-        <div style="padding:14px 16px;background:rgba(0,0,0,.15)"><div style="font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal2);margin-bottom:7px">💊 Pharmacological Relevance</div><div style="font-size:.76rem;color:var(--text2);line-height:1.65">${a.pharmRelevance}</div></div>
-      </div>`:''}
+      ${anatActive===i?`<div style="border-top:1px solid var(--border)">${a.content}</div>`:''}
     </div>`).join('');
 }
 function toggleAnat(i){anatActive=anatActive===i?null:i;renderAnatomyList();}
@@ -1434,7 +2363,7 @@ function openPTSection(i){
           <div style="font-size:.88rem;font-weight:700;color:var(--text)">${t.title}</div>
           <span style="color:var(--muted);font-size:.7rem">${ptTopic===j?'▲':'▼'}</span>
         </div>
-        ${ptTopic===j?`<div style="border-top:1px solid var(--border);padding:14px 16px"><div style="font-size:.8rem;color:var(--text2);line-height:1.85;white-space:pre-line">${t.content}</div></div>`:''}
+        ${ptTopic===j?`<div style="border-top:1px solid var(--border);padding:0">${t.content}</div>`:''}
       </div>`).join('')}`;
 }
 function togglePTTopic(j,i){ptTopic=ptTopic===j?null:j;openPTSection(i);}
